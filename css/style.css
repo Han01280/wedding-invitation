@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gowun+Batang:wght@400;700&family=Great+Vibes&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@1.3.9/dist/web/static/pretendard.css');
 
 * { box-sizing: border-box; margin: 0; padding: 0; word-break: keep-all; }
 html { -webkit-text-size-adjust: 100%; }
 [hidden] { display: none !important; }
 body {
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'Pretendard', sans-serif;
   background: #ececec;
   color: #333;
   -webkit-font-smoothing: antialiased;
@@ -25,8 +25,8 @@ a { text-decoration: none; }
   overflow-x: hidden;
 }
 
-.script-font { font-family: 'Great Vibes', cursive; }
-.serif-font { font-family: 'Gowun Batang', serif; }
+.script-font { font-family: 'Pretendard', sans-serif; }
+.serif-font { font-family: 'Pretendard', sans-serif; }
 
 /* ---- 스크롤 페이드업 ---- */
 .fade-up { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
@@ -35,7 +35,7 @@ a { text-decoration: none; }
 /* ---- 섹션 공통 ---- */
 .section { padding: 64px 30px; text-align: center; }
 .section__label {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 3px;
@@ -44,7 +44,7 @@ a { text-decoration: none; }
   text-transform: uppercase;
 }
 .section__title {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', sans-serif;
   font-size: 21px;
   font-weight: 700;
   margin-bottom: 26px;
@@ -114,7 +114,7 @@ a { text-decoration: none; }
 }
 .vintage-frame > *:not(.frame-svg), .vintage-frame__inner > *:not(.frame-svg) { position: relative; z-index: 1; }
 .vintage-frame__label {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', sans-serif;
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 6px;
@@ -134,7 +134,7 @@ a { text-decoration: none; }
 .vintage-names { font-size: 32px; color: #333; margin-bottom: 14px; }
 .vintage-names--kr { font-size: 22px; letter-spacing: 2px; margin-bottom: 8px; }
 .vintage-names-en {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', sans-serif;
   font-size: 23px;
   letter-spacing: 3px;
   color: #333;
@@ -144,7 +144,7 @@ a { text-decoration: none; }
 
 /* ---- 인사말 ---- */
 .greeting__quote {
-  font-family: 'Gowun Batang', serif;
+  font-family: 'Pretendard', sans-serif;
   font-size: 15px;
   line-height: 2;
   color: #555;
@@ -164,13 +164,13 @@ a { text-decoration: none; }
 }
 
 /* ---- 캘린더 ---- */
-.calendar__month { font-family: 'Gowun Batang', serif; font-size: 19px; margin-bottom: 20px; }
+.calendar__month { font-family: 'Pretendard', sans-serif; font-size: 19px; margin-bottom: 20px; }
 .calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; font-size: 13px; margin-bottom: 22px; }
 .calendar__grid .dow { color: #aaa; font-size: 11px; padding-bottom: 6px; }
 .calendar__grid .day { padding: 6px 0; }
 .calendar__grid .day.empty { visibility: hidden; }
 .calendar__grid .day.dday { background: #b08d6b; color: #fff; border-radius: 50%; font-weight: 700; }
-.calendar__dday { font-family: 'Gowun Batang', serif; font-size: 16px; color: #b08d6b; }
+.calendar__dday { font-family: 'Pretendard', sans-serif; font-size: 16px; color: #b08d6b; }
 
 /* ---- 영상 ---- */
 .video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: #000; }
@@ -199,6 +199,7 @@ a { text-decoration: none; }
 .ceremony-date { font-size: 13px; color: #b08d6b; margin-bottom: 10px; letter-spacing: 0.5px; }
 .venue-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
 .venue-addr { font-size: 13px; color: #888; margin-bottom: 18px; }
+.map-frame { width: 100%; height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 18px; background: #eee; }
 .map-buttons { display: flex; gap: 8px; margin-bottom: 24px; }
 .map-btn { flex: 1; padding: 11px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 12px; color: #555; }
 .transport-list { text-align: left; font-size: 13px; line-height: 1.85; color: #666; background: #faf9f7; padding: 20px; border-radius: 10px; }
@@ -210,7 +211,7 @@ a { text-decoration: none; }
 /* ---- 정보 블록 ---- */
 .info-block { margin-bottom: 26px; }
 .info-block:last-child { margin-bottom: 0; }
-.info-block__title { font-family: 'Gowun Batang', serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+.info-block__title { font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
 .info-block__content { font-size: 13px; color: #777; line-height: 1.9; white-space: pre-line; }
 
 /* ---- 계좌 아코디언 ---- */
@@ -258,7 +259,7 @@ a { text-decoration: none; }
   width: 100%; max-width: 480px; background: #fff; border-radius: 18px 18px 0 0;
   padding: 24px 24px 32px; max-height: 70vh; overflow-y: auto;
 }
-.modal-sheet h3 { font-family: 'Gowun Batang', serif; font-size: 16px; margin-bottom: 16px; }
+.modal-sheet h3 { font-family: 'Pretendard', sans-serif; font-size: 16px; margin-bottom: 16px; }
 .contact-group { margin-bottom: 18px; }
 .contact-group__label { font-size: 12px; color: #b08d6b; font-weight: 700; margin-bottom: 8px; }
 .contact-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f2f2f2; }

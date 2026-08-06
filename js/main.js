@@ -253,6 +253,21 @@ async function copyText(text) {
   document.getElementById('venueName').textContent = m.name;
   document.getElementById('venueAddress').textContent = m.address;
 
+  if (CONFIG.kakao.appKey) {
+    const mapEl = document.getElementById('kakaoMap');
+    mapEl.hidden = false;
+    const script = document.createElement('script');
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${CONFIG.kakao.appKey}&autoload=false`;
+    script.onload = () => {
+      kakao.maps.load(() => {
+        const position = new kakao.maps.LatLng(m.lat, m.lng);
+        const map = new kakao.maps.Map(mapEl, { center: position, level: 4 });
+        new kakao.maps.Marker({ position, map });
+      });
+    };
+    document.head.appendChild(script);
+  }
+
   const q = encodeURIComponent(m.name);
   const addr = encodeURIComponent(m.address);
   document.getElementById('kakaoMapBtn').href = `https://map.kakao.com/link/search/${q}`;
@@ -261,11 +276,11 @@ async function copyText(text) {
 
   const t = m.transport;
   const rows = [
-    t.car && `<p><b>자가용</b><br>${nl2br(t.car)}</p>`,
-    t.subway && `<p><b>지하철</b><br>${nl2br(t.subway)}</p>`,
-    t.bus && `<p><b>버스</b><br>${nl2br(t.bus)}</p>`,
-    t.shuttle && `<p><b>셔틀버스</b><br>${nl2br(t.shuttle)}</p>`,
-    t.parking && `<p><b>주차</b><br>${nl2br(t.parking)}</p>`,
+    t.car && `<p><b>자가용</b>${nl2br(t.car)}</p>`,
+    t.subway && `<p><b>지하철</b>${nl2br(t.subway)}</p>`,
+    t.bus && `<p><b>버스</b>${nl2br(t.bus)}</p>`,
+    t.shuttle && `<p><b>셔틀버스</b>${nl2br(t.shuttle)}</p>`,
+    t.parking && `<p><b>주차</b>${nl2br(t.parking)}</p>`,
   ].filter(Boolean);
   document.getElementById('transportList').innerHTML = rows.join('');
 })();
