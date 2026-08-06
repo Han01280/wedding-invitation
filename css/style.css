@@ -91,7 +91,7 @@ a { text-decoration: none; }
 .hero--vintage {
   --hero-bg: #efe9df;
   background: var(--hero-bg);
-  padding: 96px 18px;
+  padding: 60px 18px;
 }
 .vintage-frame {
   --vf-color: #b9ab8c;
@@ -100,7 +100,7 @@ a { text-decoration: none; }
 }
 .vintage-frame__inner {
   position: relative;
-  padding: 54px 22px 50px;
+  padding: 44px 16px 42px;
   text-align: center;
 }
 .frame-svg {
@@ -116,14 +116,14 @@ a { text-decoration: none; }
 .vintage-frame__label {
   font-family: 'Gowun Batang', serif;
   font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 5px;
+  font-size: 15px;
+  letter-spacing: 6px;
   color: #3a3a3a;
 }
-.vintage-divider { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 14px 0 24px; }
-.vintage-divider span { width: 30px; height: 1px; background: var(--vf-color); }
-.vintage-divider .dot { width: 5px; height: 5px; border-radius: 50%; border: 1px solid var(--vf-color); flex-shrink: 0; }
-.vintage-photo { position: relative; background: #000; padding: 8px 30px; margin: 0 auto 24px; width: 72%; }
+.vintage-divider { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 16px 0 28px; }
+.vintage-divider span { width: 38px; height: 1px; background: var(--vf-color); }
+.vintage-divider .dot { width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--vf-color); flex-shrink: 0; }
+.vintage-photo { position: relative; background: #000; padding: 8px 24px; margin: 0 auto 28px; width: 88%; }
 .vintage-photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center 55%; }
 .vintage-play {
   position: absolute; top: 8px; right: 8px;
@@ -135,7 +135,7 @@ a { text-decoration: none; }
 .vintage-names--kr { font-size: 22px; letter-spacing: 2px; margin-bottom: 8px; }
 .vintage-names-en {
   font-family: 'Gowun Batang', serif;
-  font-size: 19px;
+  font-size: 23px;
   letter-spacing: 3px;
   color: #333;
   text-transform: uppercase;
