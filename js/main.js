@@ -253,10 +253,6 @@ async function copyText(text) {
   document.getElementById('venueName').textContent = m.name;
   document.getElementById('venueAddress').textContent = m.address;
 
-  const d = 0.004;
-  document.getElementById('mapFrame').src =
-    `https://www.openstreetmap.org/export/embed.html?bbox=${m.lng - d}%2C${m.lat - d}%2C${m.lng + d}%2C${m.lat + d}&layer=mapnik&marker=${m.lat}%2C${m.lng}`;
-
   const q = encodeURIComponent(m.name);
   const addr = encodeURIComponent(m.address);
   document.getElementById('kakaoMapBtn').href = `https://map.kakao.com/link/search/${q}`;
