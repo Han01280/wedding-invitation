@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>청첩장 QR 코드 생성</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: #f2f2f2;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #222;
+  }
+  .wrap { width: 100%; max-width: 480px; background: #fff; min-height: 100vh; padding: 40px 28px; }
+  h1 { font-size: 20px; margin-bottom: 6px; }
+  .sub { font-size: 13px; color: #777; margin-bottom: 28px; line-height: 1.6; }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  select {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  button {
+    width: 100%;
+    padding: 13px;
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  #result { text-align: center; margin-top: 24px; display: none; }
+  #result img { max-width: 240px; border: 1px solid #eee; border-radius: 12px; padding: 12px; }
+  #downloadBtn {
+    display: inline-block;
+    width: auto;
+    padding: 10px 20px;
+    background: #fff;
+    color: #222;
+    border: 1px solid #222;
+    margin-top: 16px;
+  }
+  .steps { margin-top: 40px; font-size: 13px; line-height: 1.9; color: #555; }
+  .steps h2 { font-size: 14px; margin-bottom: 10px; color: #222; }
+  .steps ol { padding-left: 18px; }
+  .note { margin-top: 20px; font-size: 12px; color: #999; line-height: 1.6; }
+  a.back { display: inline-block; margin-top: 24px; font-size: 13px; color: #777; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>청첩장 QR 코드 생성</h1>
+  <p class="sub">배포한 모바일 청첩장 주소(URL)를 입력하면 QR 코드 이미지를 만들어 드려요.<br>만든 이미지는 청첩장 인쇄물이나 문자·카카오톡에 첨부해서 사용하세요.</p>
+
+  <label for="urlInput">청첩장 URL</label>
+  <input type="text" id="urlInput" placeholder="https://yourname.github.io/wedding/">
+
+  <label for="sizeSelect">이미지 크기</label>
+  <select id="sizeSelect">
+    <option value="200">200 x 200 (모바일 공유용)</option>
+    <option value="300" selected>300 x 300 (기본)</option>
+    <option value="500">500 x 500 (인쇄용)</option>
+  </select>
+
+  <button id="generateBtn">QR 코드 생성</button>
+
+  <div id="result">
+    <img id="qrImage" alt="생성된 QR 코드">
+    <br>
+    <button id="downloadBtn">이미지 다운로드</button>
+  </div>
+
+  <div class="steps">
+    <h2>사용 방법</h2>
+    <ol>
+      <li>먼저 청첩장 사이트를 GitHub Pages, Vercel 등에 배포하고 실제 접속 주소를 확인하세요.</li>
+      <li>위 입력창에 그 주소를 붙여넣고 "QR 코드 생성"을 누르세요.</li>
+      <li>생성된 QR 이미지를 다운로드하거나, 이미지를 길게 눌러 저장하세요.</li>
+      <li>청첩장 인쇄물, 문자, 카카오톡, 이메일 등에 이미지를 첨부해 공유하세요.</li>
+      <li>하객이 스마트폰 카메라로 QR을 비추면 자동으로 청첩장 주소가 열립니다 (대부분의 최신 기종은 별도 앱 없이 카메라만으로 인식됩니다).</li>
+    </ol>
+  </div>
+
+  <p class="note">※ QR 이미지는 무료 공개 API(api.qrserver.com)를 통해 생성됩니다. 입력한 URL 외의 개인정보는 전송되지 않지만, 외부 서비스 이용이 꺼려진다면 "QR 코드 생성기" 앱이나 다른 웹사이트로도 동일한 URL을 사용해 직접 만들 수 있습니다.</p>
+
+  <a class="back" href="index.html">← 청첩장으로 돌아가기</a>
+</div>
+
+<script>
+  const urlInput = document.getElementById('urlInput');
+  const sizeSelect = document.getElementById('sizeSelect');
+  const generateBtn = document.getElementById('generateBtn');
+  const result = document.getElementById('result');
+  const qrImage = document.getElementById('qrImage');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  urlInput.value = location.href.replace(/qr\.html.*$/, '');
+
+  function buildQrUrl(targetUrl, size) {
+    return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(targetUrl)}`;
+  }
+
+  generateBtn.addEventListener('click', () => {
+    const url = urlInput.value.trim();
+    if (!url) {
+      alert('청첩장 URL을 입력해 주세요.');
+      return;
+    }
+    const size = sizeSelect.value;
+    qrImage.src = buildQrUrl(url, size);
+    result.style.display = 'block';
+  });
+
+  downloadBtn.addEventListener('click', async () => {
+    try {
+      const res = await fetch(qrImage.src);
+      const blob = await res.blob();
+      const objUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = objUrl;
+      a.download = 'wedding-qr.png';
+      a.click();
+      URL.revokeObjectURL(objUrl);
+    } catch (e) {
+      alert('자동 다운로드에 실패했어요. 이미지를 길게 눌러 저장해 주세요.');
+    }
+  });
+</script>
+</body>
+</html>
