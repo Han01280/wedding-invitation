@@ -17,7 +17,7 @@ const CONFIG = {
 
   // 커버(인트로)
   intro: {
-    mainImage: 'https://picsum.photos/seed/wedding-main/900/1200',
+    mainImage: 'images/main.jpg',
     heroStyle: 'vintage', // 'vintage'(계단형 액자+필름사진) | 'arch'(아치형) | 'full'(풀스크린)
     groomName: '이병한',
     brideName: '노규민',
@@ -123,6 +123,6 @@ const CONFIG = {
   share: {
     title: '병한 ♥ 규민 결혼합니다',
     description: '2026년 12월 20일 일요일 오후 12시, 천안 비렌티 웨딩홀에서 결혼식을 올립니다.',
-    kakaoThumbnail: 'https://picsum.photos/seed/wedding-main/400/400',
+    kakaoThumbnail: 'https://wedding-invitation-kappa-three-94.vercel.app/images/main.jpg',
   },
 };
