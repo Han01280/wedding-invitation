@@ -347,13 +347,12 @@ async function copyText(text) {
     e.preventDefault();
     const name = document.getElementById('rsvpName').value.trim();
     const count = document.getElementById('rsvpCount').value;
-    const phone = document.getElementById('rsvpPhone').value.trim();
     const consent = document.getElementById('rsvpConsent').checked;
-    if (!name || !phone || !consent) {
+    if (!name || !consent) {
       showToast('필수 항목을 모두 입력해 주세요');
       return;
     }
-    const payload = { ...state, name, count, phone, submittedAt: new Date().toISOString() };
+    const payload = { ...state, name, count, submittedAt: new Date().toISOString() };
 
     if (!CONFIG.rsvp.endpoint) {
       showToast('RSVP 저장소가 아직 설정되지 않았어요 (README 참고)');
