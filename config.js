@@ -115,7 +115,7 @@ const CONFIG = {
   // RSVP (구글 시트 연동 — README 참고해 Apps Script 배포 후 endpoint를 채워주세요)
   rsvp: {
     enabled: true,
-    endpoint: '', // 예: 'https://script.google.com/macros/s/AKfycb.../exec'
+    endpoint: 'https://script.google.com/macros/s/AKfycbwz7TVyMNo4hJtc-6FlpsFdijbyt3OraXdjsV3GLz9a11zLVu2_j7Xek8px8hQhGRkR/exec',
   },
 
   // 공유하기 / 카카오톡 카드용 정보
