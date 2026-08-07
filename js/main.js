@@ -55,8 +55,12 @@ async function copyText(text) {
         ${frameSvg}
         <div class="vintage-frame__inner">
           ${frameSvg}
-          <p class="vintage-frame__label">WEDDING DAY</p>
-          <div class="vintage-divider"><span></span><i class="dot"></i><span></span></div>
+          <svg class="vintage-flourish" viewBox="0 0 220 34" aria-hidden="true">
+            <path d="M110,17 C95,4 78,4 68,13 C60,20 68,27 76,22 C82,18 78,10 70,11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M110,17 C125,4 142,4 152,13 C160,20 152,27 144,22 C138,18 142,10 150,11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="110" cy="17" r="2.5" fill="currentColor"/>
+          </svg>
+          <p class="vintage-frame__label">Happy Wedding Day</p>
           <div class="vintage-photo">
             <img src="${c.mainImage}" alt="메인 사진">
             ${playBtn}
