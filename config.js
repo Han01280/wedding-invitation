@@ -122,6 +122,6 @@ const CONFIG = {
   share: {
     title: '병한 ♥ 규민 결혼합니다',
     description: '2026년 12월 20일 일요일 오후 12시, 천안 비렌티 웨딩홀에서 결혼식을 올립니다.',
-    kakaoThumbnail: 'https://wedding-invitation-kappa-three-94.vercel.app/images/main.jpg',
+    kakaoThumbnail: 'https://wedding-invitation-kappa-three-94.vercel.app/images/og-image.jpg',
   },
 };
