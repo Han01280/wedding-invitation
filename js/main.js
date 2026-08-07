@@ -406,6 +406,12 @@ async function copyText(text) {
           imageUrl: CONFIG.share.kakaoThumbnail,
           link: { mobileWebUrl: location.href, webUrl: location.href },
         },
+        buttons: [
+          {
+            title: '청첩장 보기',
+            link: { mobileWebUrl: location.href, webUrl: location.href },
+          },
+        ],
       });
     });
   }
