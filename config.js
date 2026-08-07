@@ -12,7 +12,7 @@ const CONFIG = {
 
   // 카카오톡 공유 (developers.kakao.com 에서 발급받은 JavaScript 키를 넣으면 활성화됩니다)
   kakao: {
-    appKey: '', // 예: '1234567890abcdef1234567890abcdef'
+    appKey: 'a0f929753500122457749aed8d5f67f8',
   },
 
   // 커버(인트로)
