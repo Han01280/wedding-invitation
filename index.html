@@ -25,64 +25,82 @@
   <section id="hero" class="hero"></section>
 
   <!-- 2. 인사말 -->
-  <section class="section fade-up">
-    <p class="section__label">Invitation</p>
-    <p id="greetingQuote" class="greeting__quote"></p>
-    <p id="greetingParents" class="greeting__parents"></p>
-    <button id="contactBtn" class="btn-contact">축하 연락하기</button>
+  <section class="section">
+    <div class="fade-up">
+      <p class="section__label">Invitation</p>
+      <p id="greetingQuote" class="greeting__quote"></p>
+    </div>
+    <div class="fade-up">
+      <p id="greetingParents" class="greeting__parents"></p>
+      <button id="contactBtn" class="btn-contact">축하 연락하기</button>
+    </div>
   </section>
 
   <!-- 3. 캘린더 -->
-  <section class="section fade-up">
-    <p class="section__label">Wedding Day</p>
-    <p id="calendarMonth" class="calendar__month"></p>
-    <div id="calendarGrid" class="calendar__grid" aria-label="예식 월 달력"></div>
-    <p id="ddayText" class="calendar__dday">계산 중...</p>
+  <section class="section">
+    <div class="fade-up">
+      <p class="section__label">Wedding Day</p>
+      <p id="calendarMonth" class="calendar__month"></p>
+    </div>
+    <div class="fade-up">
+      <div id="calendarGrid" class="calendar__grid" aria-label="예식 월 달력"></div>
+      <p id="ddayText" class="calendar__dday">계산 중...</p>
+    </div>
   </section>
 
   <!-- 4. 영상 (선택) -->
-  <section id="videoSection" class="section fade-up" hidden>
-    <p class="section__label">Video</p>
-    <div class="video-wrap"><iframe id="videoFrame" allowfullscreen loading="lazy"></iframe></div>
+  <section id="videoSection" class="section" hidden>
+    <div class="fade-up">
+      <p class="section__label">Video</p>
+      <div class="video-wrap"><iframe id="videoFrame" allowfullscreen loading="lazy"></iframe></div>
+    </div>
   </section>
 
   <!-- 5. 갤러리 -->
-  <section class="section fade-up">
-    <p class="section__label">Gallery</p>
-    <div class="gallery__main">
-      <img id="galleryMainImg" alt="갤러리 대표 이미지">
-      <button class="gallery__arrow gallery__arrow--prev" id="galleryPrev" aria-label="이전 이미지">‹</button>
-      <button class="gallery__arrow gallery__arrow--next" id="galleryNext" aria-label="다음 이미지">›</button>
+  <section class="section">
+    <p class="section__label fade-up">Gallery</p>
+    <div class="fade-up">
+      <div class="gallery__main">
+        <img id="galleryMainImg" alt="갤러리 대표 이미지">
+        <button class="gallery__arrow gallery__arrow--prev" id="galleryPrev" aria-label="이전 이미지">‹</button>
+        <button class="gallery__arrow gallery__arrow--next" id="galleryNext" aria-label="다음 이미지">›</button>
+      </div>
+      <div id="galleryThumbs" class="gallery__thumbs"></div>
     </div>
-    <div id="galleryThumbs" class="gallery__thumbs"></div>
   </section>
 
   <!-- 6. 오시는 길 -->
-  <section class="section fade-up">
-    <p class="section__label">Location</p>
-    <p id="ceremonyDateText" class="ceremony-date"></p>
-    <p id="venueName" class="venue-name"></p>
-    <p id="venueAddress" class="venue-addr"></p>
-    <div id="kakaoMap" class="map-frame" hidden></div>
-    <div class="map-buttons">
-      <a class="map-btn" id="naverMapBtn" target="_blank" rel="noopener">네이버지도</a>
-      <a class="map-btn" id="kakaoMapBtn" target="_blank" rel="noopener">카카오맵</a>
-      <a class="map-btn" id="tmapBtn" target="_blank" rel="noopener">T맵</a>
+  <section class="section">
+    <div class="fade-up">
+      <p class="section__label">Location</p>
+      <p id="ceremonyDateText" class="ceremony-date"></p>
+      <p id="venueName" class="venue-name"></p>
+      <p id="venueAddress" class="venue-addr"></p>
     </div>
-    <div id="transportList" class="transport-list"></div>
+    <div class="fade-up">
+      <div id="kakaoMap" class="map-frame" hidden></div>
+      <div class="map-buttons">
+        <a class="map-btn" id="naverMapBtn" target="_blank" rel="noopener">네이버지도</a>
+        <a class="map-btn" id="kakaoMapBtn" target="_blank" rel="noopener">카카오맵</a>
+        <a class="map-btn" id="tmapBtn" target="_blank" rel="noopener">T맵</a>
+      </div>
+    </div>
+    <div id="transportList" class="transport-list fade-up"></div>
   </section>
 
   <!-- 7. 안내사항 -->
-  <section id="informationSection" class="section fade-up">
-    <p class="section__label">Information</p>
-    <div id="informationList"></div>
+  <section id="informationSection" class="section">
+    <p class="section__label fade-up">Information</p>
+    <div id="informationList" class="fade-up"></div>
   </section>
 
   <!-- 8. 마음 전하실 곳 -->
-  <section class="section fade-up">
-    <p class="section__label">마음 전하실 곳</p>
-    <p class="gift__desc">참석이 어려우신 분들을 위해 기재했습니다.<br>너그러운 마음으로 양해 부탁드립니다.</p>
-    <div class="accordion">
+  <section class="section">
+    <div class="fade-up">
+      <p class="section__label">마음 전하실 곳</p>
+      <p class="gift__desc">참석이 어려우신 분들을 위해 기재했습니다.<br>너그러운 마음으로 양해 부탁드립니다.</p>
+    </div>
+    <div class="accordion fade-up">
       <button class="accordion__head" data-target="#accGroom">신랑측 계좌번호 <span>▾</span></button>
       <div class="accordion__body" id="accGroom" hidden></div>
       <button class="accordion__head" data-target="#accBride">신부측 계좌번호 <span>▾</span></button>
@@ -91,10 +109,12 @@
   </section>
 
   <!-- 9. RSVP -->
-  <section id="rsvpSection" class="section fade-up">
-    <p class="section__label">RSVP</p>
-    <p class="rsvp__desc">결혼식 참석 여부를 알려주세요</p>
-    <form id="rsvpForm">
+  <section id="rsvpSection" class="section">
+    <div class="fade-up">
+      <p class="section__label">RSVP</p>
+      <p class="rsvp__desc">결혼식 참석 여부를 알려주세요</p>
+    </div>
+    <form id="rsvpForm" class="fade-up">
       <div class="rsvp-field">
         <label>구분</label>
         <div class="toggle-group" data-field="side">
@@ -133,13 +153,15 @@
   </section>
 
   <!-- 10. 공유 -->
-  <section class="section fade-up">
-    <p class="section__label">Share</p>
-    <div class="share__buttons">
-      <button id="copyLinkBtn" class="btn-outline">공유하기 (링크 복사)</button>
-      <button id="kakaoShareBtn" class="btn-kakao" hidden>카카오톡 공유하기</button>
+  <section class="section">
+    <p class="section__label fade-up">Share</p>
+    <div class="fade-up">
+      <div class="share__buttons">
+        <button id="copyLinkBtn" class="btn-outline">공유하기 (링크 복사)</button>
+        <button id="kakaoShareBtn" class="btn-kakao" hidden>카카오톡 공유하기</button>
+      </div>
+      <p style="font-size:12px;color:#999;margin-top:16px;">QR 코드로 공유하고 싶다면 <a href="qr.html" style="color:#b08d6b;text-decoration:underline;">QR 코드 생성 도구</a>를 이용해 보세요.</p>
     </div>
-    <p style="font-size:12px;color:#999;margin-top:16px;">QR 코드로 공유하고 싶다면 <a href="qr.html" style="color:#b08d6b;text-decoration:underline;">QR 코드 생성 도구</a>를 이용해 보세요.</p>
   </section>
 
   <footer class="footer">
