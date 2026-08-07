@@ -10,7 +10,8 @@ function doPost(e) {
   }
 
   var data = JSON.parse(e.postData.contents);
-  sheet.appendRow([
+  var row = sheet.getLastRow() + 1;
+  sheet.getRange(row, 1, 1, 7).setValues([[
     new Date(),
     data.side || '',
     data.attend || '',
@@ -18,7 +19,9 @@ function doPost(e) {
     data.name || '',
     data.count || '',
     data.phone || '',
-  ]);
+  ]]);
+  // 연락처는 숫자로 자동 변환되면 앞자리 0이 사라지므로 항상 텍스트로 강제 저장
+  sheet.getRange(row, 7).setNumberFormat('@').setValue(data.phone || '');
 
   return ContentService
     .createTextOutput(JSON.stringify({ result: 'success' }))
