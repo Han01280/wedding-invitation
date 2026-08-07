@@ -275,12 +275,21 @@ async function copyText(text) {
   document.getElementById('tmapBtn').href = `tmap://search?name=${q}`;
 
   const t = m.transport;
+  function transportGroup(label, lines) {
+    if (!lines || !lines.length) return '';
+    const items = lines.map((line) => {
+      const isNote = line.startsWith('※');
+      const text = isNote ? line.slice(1).trim() : line;
+      return `<li class="${isNote ? 'transport-note' : ''}">${escapeHtml(text)}</li>`;
+    }).join('');
+    return `<div class="transport-group"><b>${label}</b><ul class="transport-sublist">${items}</ul></div>`;
+  }
   const rows = [
-    t.car && `<p><b>자가용</b>${nl2br(t.car)}</p>`,
-    t.subway && `<p><b>지하철</b>${nl2br(t.subway)}</p>`,
-    t.bus && `<p><b>버스</b>${nl2br(t.bus)}</p>`,
-    t.shuttle && `<p><b>셔틀버스</b>${nl2br(t.shuttle)}</p>`,
-    t.parking && `<p><b>주차</b>${nl2br(t.parking)}</p>`,
+    transportGroup('자가용', t.car),
+    transportGroup('지하철', t.subway),
+    transportGroup('버스', t.bus),
+    transportGroup('셔틀버스', t.shuttle),
+    transportGroup('주차', t.parking),
   ].filter(Boolean);
   document.getElementById('transportList').innerHTML = rows.join('');
 })();
