@@ -279,21 +279,22 @@ async function copyText(text) {
   document.getElementById('tmapBtn').href = `tmap://search?name=${q}`;
 
   const t = m.transport;
-  function transportGroup(label, lines) {
-    if (!lines || !lines.length) return '';
-    const items = lines.map((line) => {
-      const isNote = line.startsWith('※');
-      const text = isNote ? line.slice(1).trim() : line;
-      return `<li class="${isNote ? 'transport-note' : ''}">${escapeHtml(text)}</li>`;
+  const CIRCLED_NUMS = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩'];
+  function transportGroup(label, data) {
+    if (!data || !data.steps || !data.steps.length) return '';
+    const stepItems = data.steps.map((step, i) => {
+      const num = CIRCLED_NUMS[i] || `${i + 1}.`;
+      const isObj = typeof step === 'object';
+      const text = isObj ? step.text : step;
+      const sub = isObj && step.sub ? `<div class="transport-sub">${escapeHtml(step.sub)}</div>` : '';
+      return `<li class="transport-step"><span class="transport-num">${num}</span>${escapeHtml(text)}${sub}</li>`;
     }).join('');
-    return `<div class="transport-group"><b>${label}</b><ul class="transport-sublist">${items}</ul></div>`;
+    const noteItems = (data.notes || []).map((n) => `<li class="transport-note">${escapeHtml(n)}</li>`).join('');
+    return `<div class="transport-group"><b>${label}</b><ul class="transport-steplist">${stepItems}</ul>${noteItems ? `<ul class="transport-sublist">${noteItems}</ul>` : ''}</div>`;
   }
   const rows = [
-    transportGroup('자가용', t.car),
-    transportGroup('지하철', t.subway),
-    transportGroup('버스', t.bus),
-    transportGroup('셔틀버스', t.shuttle),
-    transportGroup('주차', t.parking),
+    transportGroup('셔틀버스 이용', t.shuttle),
+    transportGroup('시내버스 이용', t.bus),
   ].filter(Boolean);
   document.getElementById('transportList').innerHTML = rows.join('');
 })();
