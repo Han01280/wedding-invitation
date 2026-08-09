@@ -119,7 +119,9 @@ async function copyText(text) {
 
 // ============ 2. 인사말 ============
 (function renderGreeting() {
-  document.getElementById('greetingQuote').innerHTML = nl2br(CONFIG.intro.message);
+  document.getElementById('greetingQuote').innerHTML = CONFIG.intro.message
+    .map((para) => `<p>${nl2br(para)}</p>`)
+    .join('');
   const p = CONFIG.parents;
   document.getElementById('greetingParents').innerHTML =
     `${escapeHtml(p.groom.father)} · ${escapeHtml(p.groom.mother)} 의 ${escapeHtml(p.groom.relation)} <b>${escapeHtml(CONFIG.intro.groomName)}</b><br>` +
@@ -167,13 +169,16 @@ async function copyText(text) {
 (function renderCalendar() {
   const weddingDate = new Date(CONFIG.calendar.date);
   const grid = document.getElementById('calendarGrid');
-  const monthEl = document.getElementById('calendarMonth');
   const ddayEl = document.getElementById('ddayText');
   if (!grid) return;
 
+  const dateTextEl = document.getElementById('weddingDateText');
+  const venueTextEl = document.getElementById('weddingVenueText');
+  if (dateTextEl) dateTextEl.textContent = CONFIG.intro.dateText;
+  if (venueTextEl) venueTextEl.textContent = CONFIG.intro.venueShort;
+
   const year = weddingDate.getFullYear();
   const month = weddingDate.getMonth();
-  monthEl.textContent = `${year}. ${String(month + 1).padStart(2, '0')}`;
 
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
@@ -252,9 +257,6 @@ async function copyText(text) {
 // ============ 6. 오시는 길 ============
 (function renderMap() {
   const m = CONFIG.map;
-  const dateEl = document.getElementById('ceremonyDateText');
-  if (dateEl) dateEl.textContent = CONFIG.intro.dateText;
-  document.getElementById('venueName').textContent = m.name;
   document.getElementById('venueAddress').textContent = m.address;
 
   if (CONFIG.kakao.appKey) {
