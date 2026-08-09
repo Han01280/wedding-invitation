@@ -179,6 +179,8 @@ async function copyText(text) {
 
   const year = weddingDate.getFullYear();
   const month = weddingDate.getMonth();
+  const monthEl = document.getElementById('calendarMonth');
+  if (monthEl) monthEl.textContent = `${year}. ${String(month + 1).padStart(2, '0')}`;
 
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
