@@ -56,7 +56,7 @@ const CONFIG = {
   },
 
   // 갤러리
-  gallery: Array.from({ length: 9 }, (_, i) => `https://picsum.photos/seed/wedding-g${i + 1}/700/700`),
+  gallery: Array.from({ length: 36 }, (_, i) => `images/gallery${i + 1}.jpg`),
 
   // 오시는 길
   map: {
