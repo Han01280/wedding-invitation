@@ -124,8 +124,8 @@ async function copyText(text) {
     .join('');
   const p = CONFIG.parents;
   document.getElementById('greetingParents').innerHTML =
-    `${escapeHtml(p.groom.father)} · ${escapeHtml(p.groom.mother)} 의 ${escapeHtml(p.groom.relation)} <b>${escapeHtml(CONFIG.intro.groomName)}</b><br>` +
-    `${escapeHtml(p.bride.father)} · ${escapeHtml(p.bride.mother)} 의 ${escapeHtml(p.bride.relation)} <b>${escapeHtml(CONFIG.intro.brideName)}</b>`;
+    `<p>${escapeHtml(p.groom.father)} · ${escapeHtml(p.groom.mother)} 의 ${escapeHtml(p.groom.relation)} <b>${escapeHtml(CONFIG.intro.groomName)}</b></p>` +
+    `<p>${escapeHtml(p.bride.father)} · ${escapeHtml(p.bride.mother)} 의 ${escapeHtml(p.bride.relation)} <b>${escapeHtml(CONFIG.intro.brideName)}</b></p>`;
 })();
 
 // ============ 연락처 모달 ============
@@ -175,7 +175,7 @@ async function copyText(text) {
   const dateTextEl = document.getElementById('weddingDateText');
   const venueTextEl = document.getElementById('weddingVenueText');
   if (dateTextEl) dateTextEl.textContent = CONFIG.intro.dateText;
-  if (venueTextEl) venueTextEl.textContent = CONFIG.intro.venueShort;
+  if (venueTextEl) venueTextEl.innerHTML = nl2br(CONFIG.intro.venueShort);
 
   const year = weddingDate.getFullYear();
   const month = weddingDate.getMonth();
@@ -297,8 +297,8 @@ async function copyText(text) {
     return `<div class="transport-group"><b>${label}</b><ul class="transport-steplist">${stepItems}</ul>${noteItems ? `<ul class="transport-sublist">${noteItems}</ul>` : ''}</div>`;
   }
   const rows = [
-    transportGroup('셔틀버스 이용', t.shuttle),
-    transportGroup('시내버스 이용', t.bus),
+    transportGroup('셔틀버스', t.shuttle),
+    transportGroup('시내버스', t.bus),
   ].filter(Boolean);
   document.getElementById('transportList').innerHTML = rows.join('');
 })();
