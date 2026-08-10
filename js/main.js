@@ -180,13 +180,13 @@ async function copyText(text) {
   const year = weddingDate.getFullYear();
   const month = weddingDate.getMonth();
   const monthEl = document.getElementById('calendarMonth');
-  if (monthEl) monthEl.textContent = `${year}. ${String(month + 1).padStart(2, '0')}`;
+  if (monthEl) monthEl.textContent = `${month + 1}월`;
 
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
   const dows = ['일', '월', '화', '수', '목', '금', '토'];
 
-  let html = dows.map((d) => `<div class="dow">${d}</div>`).join('');
+  let html = dows.map((d, i) => `<div class="dow${i === 0 ? ' dow--sun' : ''}">${d}</div>`).join('');
   for (let i = 0; i < firstDay; i++) html += '<div class="day empty"></div>';
   for (let d = 1; d <= lastDate; d++) {
     const isDday = d === weddingDate.getDate();
@@ -245,9 +245,46 @@ async function copyText(text) {
     img.addEventListener('click', () => { current = Number(img.dataset.index); render(); });
   });
 
+  // 메인 이미지 드래그(스와이프)로 이전/다음 사진 넘기기
+  let dragStartX = 0;
+  let dragDeltaX = 0;
+  let isDragging = false;
+  let wasDragged = false;
+  const SWIPE_THRESHOLD = 40;
+
+  function onDragStart(e) {
+    isDragging = true;
+    wasDragged = false;
+    dragStartX = e.clientX;
+    mainImg.style.transition = 'none';
+  }
+  function onDragMove(e) {
+    if (!isDragging) return;
+    dragDeltaX = e.clientX - dragStartX;
+    if (Math.abs(dragDeltaX) > 5) wasDragged = true;
+    mainImg.style.transform = `translateX(${dragDeltaX}px)`;
+  }
+  function onDragEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    mainImg.style.transition = 'transform 0.25s ease';
+    mainImg.style.transform = 'translateX(0)';
+    if (Math.abs(dragDeltaX) > SWIPE_THRESHOLD) {
+      if (dragDeltaX < 0) current = (current + 1) % images.length;
+      else current = (current - 1 + images.length) % images.length;
+      render();
+    }
+    dragDeltaX = 0;
+  }
+  mainImg.addEventListener('pointerdown', onDragStart);
+  mainImg.addEventListener('pointermove', onDragMove);
+  mainImg.addEventListener('pointerup', onDragEnd);
+  mainImg.addEventListener('pointerleave', onDragEnd);
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   mainImg.addEventListener('click', () => {
+    if (wasDragged) { wasDragged = false; return; }
     lightboxImg.src = mainImg.src;
     lightbox.hidden = false;
   });
@@ -277,10 +314,9 @@ async function copyText(text) {
   }
 
   const q = encodeURIComponent(m.name);
-  const addr = encodeURIComponent(m.address);
-  document.getElementById('kakaoMapBtn').href = `https://map.kakao.com/link/search/${q}`;
-  document.getElementById('naverMapBtn').href = `https://map.naver.com/p/search/${addr}`;
-  document.getElementById('tmapBtn').href = `tmap://search?name=${q}`;
+  document.getElementById('kakaoMapBtn').href = 'https://kko.to/DO8U_LcDfJ';
+  document.getElementById('naverMapBtn').href = 'https://naver.me/Ghbu0bVI';
+  document.getElementById('tmapBtn').href = `tmap://route?goalname=${q}&goalx=${m.lng}&goaly=${m.lat}`;
 
   const t = m.transport;
   const CIRCLED_NUMS = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩'];

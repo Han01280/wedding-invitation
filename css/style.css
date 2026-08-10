@@ -154,12 +154,12 @@ a { text-decoration: none; }
   font-size: 15px;
   line-height: 2;
   color: #555;
-  margin-bottom: 30px;
+  margin-bottom: 56px;
 }
 .greeting__quote p { margin-bottom: 18px; }
 .greeting__quote p:last-child { margin-bottom: 0; }
-.greeting__parents { font-size: 15px; line-height: 1.8; color: #444; }
-.greeting__parents p { margin-bottom: 14px; }
+.greeting__parents { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 40px; }
+.greeting__parents p { margin-bottom: 4px; }
 .greeting__parents p:last-child { margin-bottom: 0; }
 .greeting__parents b { font-weight: 700; }
 .btn-contact {
@@ -173,12 +173,13 @@ a { text-decoration: none; }
 }
 
 /* ---- 캘린더 ---- */
-.calendar__month { font-family: 'Pretendard', sans-serif; font-size: 19px; margin-bottom: 20px; }
+.calendar__month { font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #b08d6b; margin-bottom: 20px; }
 .wedding-date { font-size: 15px; font-weight: 700; color: #333; margin-bottom: 6px; }
 .wedding-venue { font-size: 14px; line-height: 1.7; color: #777; margin-bottom: 24px; }
-.calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; font-size: 13px; margin-bottom: 22px; }
-.calendar__grid .dow { color: #aaa; font-size: 11px; padding-bottom: 6px; }
-.calendar__grid .day { width: 30px; height: 30px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
+.calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 15px; margin-bottom: 22px; }
+.calendar__grid .dow { color: #555; font-weight: 700; font-size: 13px; padding-bottom: 10px; }
+.calendar__grid .dow--sun { color: #b08d6b; }
+.calendar__grid .day { width: 34px; height: 34px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #333; }
 .calendar__grid .day.empty { visibility: hidden; }
 .calendar__grid .day.dday { background: #b08d6b; color: #fff; border-radius: 50%; font-weight: 700; }
 .calendar__dday { font-family: 'Pretendard', sans-serif; font-size: 16px; color: #b08d6b; }
@@ -188,8 +189,8 @@ a { text-decoration: none; }
 .video-wrap iframe { width: 100%; height: 100%; border: 0; }
 
 /* ---- 갤러리 (메인+화살표+썸네일) ---- */
-.gallery__main { position: relative; width: 100%; aspect-ratio: 1/1; border-radius: 10px; overflow: hidden; margin-bottom: 12px; background: #eee; }
-.gallery__main img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+.gallery__main { position: relative; width: 100%; aspect-ratio: 1/1; border-radius: 0; overflow: hidden; margin-bottom: 12px; background: #eee; touch-action: pan-y; }
+.gallery__main img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; user-select: none; -webkit-user-drag: none; }
 .gallery__arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 34px; height: 34px; border-radius: 50%;
@@ -201,7 +202,7 @@ a { text-decoration: none; }
 .gallery__arrow--next { right: 10px; }
 .gallery__thumbs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
 .gallery__thumbs img {
-  width: 56px; height: 56px; object-fit: cover; border-radius: 6px; flex-shrink: 0;
+  width: 56px; height: 56px; object-fit: cover; border-radius: 0; flex-shrink: 0;
   opacity: .5; cursor: pointer; transition: opacity .2s;
 }
 .gallery__thumbs img.active { opacity: 1; outline: 2px solid #b08d6b; }
