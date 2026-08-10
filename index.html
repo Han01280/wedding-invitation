@@ -169,7 +169,11 @@
   <button id="lightboxClose" class="lightbox__close" aria-label="닫기">✕</button>
   <button id="lightboxPrev" class="lightbox__arrow lightbox__arrow--prev" aria-label="이전 사진">‹</button>
   <button id="lightboxNext" class="lightbox__arrow lightbox__arrow--next" aria-label="다음 사진">›</button>
-  <img id="lightboxImg" alt="갤러리 확대 이미지">
+  <div id="lightboxTrack" class="lightbox__track">
+    <div class="lightbox__slide"><img id="lightboxImgPrev" alt=""></div>
+    <div class="lightbox__slide"><img id="lightboxImgCurrent" alt="갤러리 확대 이미지"></div>
+    <div class="lightbox__slide"><img id="lightboxImgNext" alt=""></div>
+  </div>
 </div>
 
 <script src="config.js"></script>

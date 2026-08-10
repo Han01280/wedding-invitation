@@ -228,37 +228,44 @@ async function copyText(text) {
 
   let current = 0;
   const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
+  const track = document.getElementById('lightboxTrack');
+  const imgPrev = document.getElementById('lightboxImgPrev');
+  const imgCurrent = document.getElementById('lightboxImgCurrent');
+  const imgNext = document.getElementById('lightboxImgNext');
   const SWIPE_THRESHOLD = 50;
+  const TRANSITION = 'transform 0.32s ease';
+
+  function idx(offset) {
+    return (current + offset + images.length) % images.length;
+  }
+  function syncSlides() {
+    imgPrev.src = images[idx(-1)];
+    imgCurrent.src = images[current];
+    imgNext.src = images[idx(1)];
+  }
 
   function openLightbox(index) {
     current = index;
-    lightboxImg.style.transition = 'none';
-    lightboxImg.style.transform = 'translateX(0)';
-    lightboxImg.src = images[current];
+    track.style.transition = 'none';
+    track.style.transform = 'translateX(-33.3333%)';
+    syncSlides();
     lightbox.hidden = false;
   }
 
-  // direction: 1이면 다음 사진(왼쪽으로 슬라이드), -1이면 이전 사진(오른쪽으로 슬라이드)
-  // 사진이 화면 밖으로 완전히 슬라이드되어 나간 뒤, 반대편 화면 밖에서 다음 사진이 이어서 슬라이드 들어오는 방식
+  // 트랙(이전+현재+다음 3장)을 통째로 슬라이드시켜 사진끼리 자연스럽게 이어지도록 전환
   let isAnimating = false;
-  function goToImage(index, direction) {
+  function goToImage(direction) {
     if (isAnimating) return;
     isAnimating = true;
-    current = (index + images.length) % images.length;
-    const dist = window.innerWidth;
-    lightboxImg.style.transition = 'transform 0.3s ease';
-    lightboxImg.style.transform = `translateX(${direction * -dist}px)`;
+    track.style.transition = TRANSITION;
+    track.style.transform = `translateX(${direction === 1 ? '-66.6666%' : '0%'})`;
     setTimeout(() => {
-      lightboxImg.src = images[current];
-      lightboxImg.style.transition = 'none';
-      lightboxImg.style.transform = `translateX(${direction * dist}px)`;
-      setTimeout(() => {
-        lightboxImg.style.transition = 'transform 0.3s ease';
-        lightboxImg.style.transform = 'translateX(0)';
-        setTimeout(() => { isAnimating = false; }, 300);
-      }, 20);
-    }, 300);
+      current = idx(direction);
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(-33.3333%)';
+      syncSlides();
+      isAnimating = false;
+    }, 320);
   }
 
   gridWrap.querySelectorAll('img').forEach((img) => {
@@ -266,46 +273,49 @@ async function copyText(text) {
   });
 
   document.getElementById('lightboxClose').addEventListener('click', () => { lightbox.hidden = true; });
-  document.getElementById('lightboxPrev').addEventListener('click', () => goToImage(current - 1, -1));
-  document.getElementById('lightboxNext').addEventListener('click', () => goToImage(current + 1, 1));
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.hidden = true; });
+  document.getElementById('lightboxPrev').addEventListener('click', () => goToImage(-1));
+  document.getElementById('lightboxNext').addEventListener('click', () => goToImage(1));
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.classList.contains('lightbox__slide')) lightbox.hidden = true;
+  });
   document.addEventListener('keydown', (e) => {
     if (lightbox.hidden) return;
     if (e.key === 'Escape') lightbox.hidden = true;
-    if (e.key === 'ArrowRight') goToImage(current + 1, 1);
-    if (e.key === 'ArrowLeft') goToImage(current - 1, -1);
+    if (e.key === 'ArrowRight') goToImage(1);
+    if (e.key === 'ArrowLeft') goToImage(-1);
   });
 
-  // 확대 이미지를 드래그(스와이프)해서 다음/이전 사진으로 부드럽게 전환
+  // 드래그(스와이프)로 넘기기 — 트랙 전체가 손가락을 따라 함께 이동
   let dragStartX = 0;
   let dragDeltaX = 0;
   let isDragging = false;
 
   function onDragStart(e) {
+    if (isAnimating) return;
     isDragging = true;
     dragStartX = e.clientX;
-    lightboxImg.style.transition = 'none';
+    track.style.transition = 'none';
   }
   function onDragMove(e) {
     if (!isDragging) return;
     dragDeltaX = e.clientX - dragStartX;
-    lightboxImg.style.transform = `translateX(${dragDeltaX}px)`;
+    track.style.transform = `translateX(calc(-33.3333% + ${dragDeltaX}px))`;
   }
   function onDragEnd() {
     if (!isDragging) return;
     isDragging = false;
     if (Math.abs(dragDeltaX) > SWIPE_THRESHOLD) {
-      goToImage(current + (dragDeltaX < 0 ? 1 : -1), dragDeltaX < 0 ? 1 : -1);
+      goToImage(dragDeltaX < 0 ? 1 : -1);
     } else {
-      lightboxImg.style.transition = 'transform 0.2s ease';
-      lightboxImg.style.transform = 'translateX(0)';
+      track.style.transition = TRANSITION;
+      track.style.transform = 'translateX(-33.3333%)';
     }
     dragDeltaX = 0;
   }
-  lightboxImg.addEventListener('pointerdown', onDragStart);
-  lightboxImg.addEventListener('pointermove', onDragMove);
-  lightboxImg.addEventListener('pointerup', onDragEnd);
-  lightboxImg.addEventListener('pointerleave', onDragEnd);
+  track.addEventListener('pointerdown', onDragStart);
+  track.addEventListener('pointermove', onDragMove);
+  track.addEventListener('pointerup', onDragEnd);
+  track.addEventListener('pointerleave', onDragEnd);
 })();
 
 // ============ 6. 오시는 길 ============
