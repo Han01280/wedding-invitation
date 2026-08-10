@@ -356,7 +356,7 @@ async function copyText(text) {
     script.onload = () => {
       kakao.maps.load(() => {
         const position = new kakao.maps.LatLng(m.lat, m.lng);
-        const map = new kakao.maps.Map(mapEl, { center: position, level: 3 });
+        const map = new kakao.maps.Map(mapEl, { center: position, level: 5 });
         new kakao.maps.Marker({ position, map });
       });
     };
@@ -383,7 +383,7 @@ async function copyText(text) {
     return `<div class="transport-group"><b>${label}</b><ul class="transport-steplist">${stepItems}</ul>${noteItems ? `<ul class="transport-sublist">${noteItems}</ul>` : ''}</div>`;
   }
   const rows = [
-    transportGroup('셔틀버스', t.shuttle, 'transport-sub--colon'),
+    transportGroup('셔틀버스', t.shuttle, 'transport-sub--plain'),
     transportGroup('시내버스', t.bus),
   ].filter(Boolean);
   document.getElementById('transportList').innerHTML = rows.join('');
