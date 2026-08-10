@@ -219,78 +219,88 @@ async function copyText(text) {
 // ============ 5. 갤러리 ============
 (function initGallery() {
   const images = CONFIG.gallery;
-  const mainImg = document.getElementById('galleryMainImg');
-  const thumbsWrap = document.getElementById('galleryThumbs');
-  const prevBtn = document.getElementById('galleryPrev');
-  const nextBtn = document.getElementById('galleryNext');
-  if (!mainImg || images.length === 0) return;
+  const gridWrap = document.getElementById('galleryGrid');
+  if (!gridWrap || images.length === 0) return;
 
-  let current = 0;
-
-  thumbsWrap.innerHTML = images
-    .map((src, i) => `<img src="${src}" data-index="${i}" alt="썸네일 ${i + 1}" loading="lazy">`)
+  gridWrap.innerHTML = images
+    .map((src, i) => `<img src="${src}" data-index="${i}" alt="갤러리 사진 ${i + 1}" loading="lazy">`)
     .join('');
 
-  function render() {
-    mainImg.src = images[current];
-    thumbsWrap.querySelectorAll('img').forEach((img, i) => {
-      img.classList.toggle('active', i === current);
-    });
-  }
-  render();
+  let current = 0;
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const SWIPE_THRESHOLD = 50;
 
-  prevBtn.addEventListener('click', () => { current = (current - 1 + images.length) % images.length; render(); });
-  nextBtn.addEventListener('click', () => { current = (current + 1) % images.length; render(); });
-  thumbsWrap.querySelectorAll('img').forEach((img) => {
-    img.addEventListener('click', () => { current = Number(img.dataset.index); render(); });
+  function openLightbox(index) {
+    current = index;
+    lightboxImg.style.transition = 'none';
+    lightboxImg.style.transform = 'translateX(0)';
+    lightboxImg.style.opacity = '1';
+    lightboxImg.src = images[current];
+    lightbox.hidden = false;
+  }
+
+  // direction: 1이면 다음 사진(왼쪽으로 슬라이드), -1이면 이전 사진(오른쪽으로 슬라이드)
+  function goToImage(index, direction) {
+    current = (index + images.length) % images.length;
+    lightboxImg.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+    lightboxImg.style.opacity = '0';
+    lightboxImg.style.transform = `translateX(${direction * -30}px)`;
+    setTimeout(() => {
+      lightboxImg.src = images[current];
+      lightboxImg.style.transition = 'none';
+      lightboxImg.style.transform = `translateX(${direction * 30}px)`;
+      setTimeout(() => {
+        lightboxImg.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+        lightboxImg.style.opacity = '1';
+        lightboxImg.style.transform = 'translateX(0)';
+      }, 20);
+    }, 180);
+  }
+
+  gridWrap.querySelectorAll('img').forEach((img) => {
+    img.addEventListener('click', () => openLightbox(Number(img.dataset.index)));
   });
 
-  // 메인 이미지 드래그(스와이프)로 이전/다음 사진 넘기기
+  document.getElementById('lightboxClose').addEventListener('click', () => { lightbox.hidden = true; });
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.hidden = true; });
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.hidden) return;
+    if (e.key === 'Escape') lightbox.hidden = true;
+    if (e.key === 'ArrowRight') goToImage(current + 1, 1);
+    if (e.key === 'ArrowLeft') goToImage(current - 1, -1);
+  });
+
+  // 확대 이미지를 드래그(스와이프)해서 다음/이전 사진으로 부드럽게 전환
   let dragStartX = 0;
   let dragDeltaX = 0;
   let isDragging = false;
-  let wasDragged = false;
-  const SWIPE_THRESHOLD = 40;
 
   function onDragStart(e) {
     isDragging = true;
-    wasDragged = false;
     dragStartX = e.clientX;
-    mainImg.style.transition = 'none';
+    lightboxImg.style.transition = 'none';
   }
   function onDragMove(e) {
     if (!isDragging) return;
     dragDeltaX = e.clientX - dragStartX;
-    if (Math.abs(dragDeltaX) > 5) wasDragged = true;
-    mainImg.style.transform = `translateX(${dragDeltaX}px)`;
+    lightboxImg.style.transform = `translateX(${dragDeltaX}px)`;
   }
   function onDragEnd() {
     if (!isDragging) return;
     isDragging = false;
-    mainImg.style.transition = 'transform 0.25s ease';
-    mainImg.style.transform = 'translateX(0)';
     if (Math.abs(dragDeltaX) > SWIPE_THRESHOLD) {
-      if (dragDeltaX < 0) current = (current + 1) % images.length;
-      else current = (current - 1 + images.length) % images.length;
-      render();
+      goToImage(current + (dragDeltaX < 0 ? 1 : -1), dragDeltaX < 0 ? 1 : -1);
+    } else {
+      lightboxImg.style.transition = 'transform 0.2s ease';
+      lightboxImg.style.transform = 'translateX(0)';
     }
     dragDeltaX = 0;
   }
-  mainImg.addEventListener('pointerdown', onDragStart);
-  mainImg.addEventListener('pointermove', onDragMove);
-  mainImg.addEventListener('pointerup', onDragEnd);
-  mainImg.addEventListener('pointerleave', onDragEnd);
-
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  mainImg.addEventListener('click', () => {
-    if (wasDragged) { wasDragged = false; return; }
-    lightboxImg.src = mainImg.src;
-    lightbox.hidden = false;
-  });
-  document.getElementById('lightboxClose').addEventListener('click', () => { lightbox.hidden = true; });
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.hidden = true; });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lightbox.hidden = true; });
+  lightboxImg.addEventListener('pointerdown', onDragStart);
+  lightboxImg.addEventListener('pointermove', onDragMove);
+  lightboxImg.addEventListener('pointerup', onDragEnd);
+  lightboxImg.addEventListener('pointerleave', onDragEnd);
 })();
 
 // ============ 6. 오시는 길 ============
@@ -314,8 +324,8 @@ async function copyText(text) {
   }
 
   const q = encodeURIComponent(m.name);
-  document.getElementById('kakaoMapBtn').href = 'https://kko.to/DO8U_LcDfJ';
-  document.getElementById('naverMapBtn').href = 'https://naver.me/Ghbu0bVI';
+  document.getElementById('kakaoMapBtn').href = `kakaomap://route?ep=${m.lat},${m.lng}&by=car`;
+  document.getElementById('naverMapBtn').href = `nmap://navigation?dlat=${m.lat}&dlng=${m.lng}&dname=${q}&appname=wedding-invitation-kappa-three-94.vercel.app`;
   document.getElementById('tmapBtn').href = `tmap://route?goalname=${q}&goalx=${m.lng}&goaly=${m.lat}`;
 
   const t = m.transport;
