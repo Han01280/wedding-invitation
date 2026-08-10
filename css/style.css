@@ -151,14 +151,14 @@ a { text-decoration: none; }
 /* ---- 인사말 ---- */
 .greeting__quote {
   font-family: 'Pretendard', sans-serif;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 2;
   color: #555;
   margin-bottom: 56px;
 }
 .greeting__quote p { margin-bottom: 18px; }
 .greeting__quote p:last-child { margin-bottom: 0; }
-.greeting__parents { font-size: 14.5px; line-height: 1.8; color: #444; margin-bottom: 40px; }
+.greeting__parents { font-size: 14px; line-height: 1.8; color: #444; margin-bottom: 40px; }
 .greeting__parents p { margin-bottom: 4px; }
 .greeting__parents p:last-child { margin-bottom: 0; }
 .greeting__parents b { font-weight: 700; }
@@ -174,7 +174,7 @@ a { text-decoration: none; }
 
 /* ---- 캘린더 ---- */
 .calendar__month { font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #b08d6b; margin-bottom: 20px; }
-.wedding-date { font-size: 15px; font-weight: 700; color: #333; margin-bottom: 28px; }
+.wedding-date { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 28px; }
 .wedding-venue { font-size: 14px; line-height: 1.7; color: #777; margin-bottom: 48px; }
 .calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 15px; margin-bottom: 46px; max-width: 300px; margin-left: auto; margin-right: auto; }
 .calendar__grid .dow { color: #555; font-weight: 700; font-size: 13px; padding-bottom: 10px; }
@@ -182,7 +182,7 @@ a { text-decoration: none; }
 .calendar__grid .day { width: 34px; height: 34px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #333; }
 .calendar__grid .day.empty { visibility: hidden; }
 .calendar__grid .day.dday { background: #b08d6b; color: #fff; border-radius: 50%; font-weight: 700; }
-.calendar__dday { font-family: 'Pretendard', sans-serif; font-size: 16px; color: #b08d6b; }
+.calendar__dday { font-family: 'Pretendard', sans-serif; font-size: 14px; color: #b08d6b; }
 
 /* ---- 영상 ---- */
 .video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: #000; }
@@ -204,12 +204,12 @@ a { text-decoration: none; }
 /* ---- 오시는 길 ---- */
 .ceremony-date { font-size: 13px; color: #b08d6b; margin-bottom: 10px; letter-spacing: 0.5px; }
 .venue-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-.venue-addr { font-size: 13px; color: #888; margin-bottom: 18px; }
+.venue-addr { font-size: 14px; color: #888; margin-bottom: 18px; }
 .map-frame { width: 100%; height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 18px; background: #eee; }
 .map-buttons { display: flex; gap: 8px; margin-bottom: 24px; }
 .map-btn { flex: 1; padding: 11px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 12px; color: #555; display: flex; align-items: center; justify-content: center; gap: 5px; }
 .map-btn__icon { flex-shrink: 0; width: 18px; height: 18px; object-fit: contain; }
-.transport-list { text-align: left; font-size: 13px; line-height: 1.7; color: #666; background: #faf9f7; padding: 20px; border-radius: 10px; }
+.transport-list { text-align: left; font-size: 14px; line-height: 1.7; color: #666; background: #faf9f7; padding: 20px; border-radius: 10px; }
 .transport-group { padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px dashed #e3ded0; }
 .transport-group:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
 .transport-group b { display: block; color: #b08d6b; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
@@ -231,22 +231,22 @@ a { text-decoration: none; }
 .info-block { margin-bottom: 26px; }
 .info-block:last-child { margin-bottom: 0; }
 .info-block__title { font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
-.info-block__content { font-size: 13px; color: #777; line-height: 1.9; white-space: pre-line; }
+.info-block__content { font-size: 14px; color: #777; line-height: 1.9; white-space: pre-line; }
 
 /* ---- 계좌 아코디언 ---- */
-.gift__desc { font-size: 13px; color: #888; line-height: 1.8; margin-bottom: 40px; }
+.gift__desc { font-size: 14px; color: #888; line-height: 1.8; margin-bottom: 40px; }
 .accordion__head {
   width: 100%; padding: 15px 18px; background: #faf9f7; border-radius: 10px;
   font-size: 14px; font-weight: 700; display: flex; justify-content: space-between; margin-bottom: 8px;
 }
 .accordion__body { padding: 2px 4px 14px; }
 .account-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 4px; border-bottom: 1px dashed #eee; gap: 10px; }
-.account-row__who { display: block; font-size: 13px; color: #999; text-align: left; }
-.account-row__num { display: block; font-size: 13px; margin-top: 2px; text-align: left; }
+.account-row__who { display: block; font-size: 14px; color: #999; text-align: left; }
+.account-row__num { display: block; font-size: 14px; margin-top: 2px; text-align: left; }
 .btn-ghost-sm { padding: 6px 12px; font-size: 11px; border: 1px solid #ccc; border-radius: 20px; white-space: nowrap; }
 
 /* ---- RSVP ---- */
-.rsvp__desc { font-size: 13px; color: #888; line-height: 2; margin-bottom: 24px; }
+.rsvp__desc { font-size: 14px; color: #888; line-height: 2; margin-bottom: 24px; }
 .rsvp-field { text-align: left; margin-bottom: 18px; }
 .rsvp-field label { display: block; font-size: 12px; color: #999; margin-bottom: 8px; }
 .toggle-group { display: flex; gap: 8px; }
