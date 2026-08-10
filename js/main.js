@@ -317,7 +317,7 @@ async function copyText(text) {
     const mapEl = document.getElementById('mapEmbed');
     mapEl.hidden = false;
     const script = document.createElement('script');
-    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${CONFIG.naver.clientId}`;
+    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${CONFIG.naver.clientId}`;
     script.onload = () => {
       const position = new naver.maps.LatLng(m.lat, m.lng);
       const map = new naver.maps.Map(mapEl, { center: position, zoom: 16 });
