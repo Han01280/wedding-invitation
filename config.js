@@ -44,20 +44,6 @@ const CONFIG = {
     bride: { father: '노상호', mother: '양경화', relation: '장녀' },
   },
 
-  // 연락처 ("축하 연락하기" 버튼에서 노출)
-  contacts: {
-    groom: [
-      { name: '이병한', relation: '신랑', phone: '010-0000-0001' },
-      { name: '이상훈', relation: '아버님', phone: '010-0000-0002' },
-      { name: '이지영', relation: '어머님', phone: '010-0000-0003' },
-    ],
-    bride: [
-      { name: '노규민', relation: '신부', phone: '010-0000-0004' },
-      { name: '노상호', relation: '아버님', phone: '010-0000-0005' },
-      { name: '양경화', relation: '어머님', phone: '010-0000-0006' },
-    ],
-  },
-
   // 캘린더 / 디데이 (ISO 형식)
   calendar: {
     date: '2026-12-20T12:00:00+09:00',

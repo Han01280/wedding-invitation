@@ -128,43 +128,6 @@ async function copyText(text) {
     `<p>${escapeHtml(p.bride.father)} · ${escapeHtml(p.bride.mother)} 의 ${escapeHtml(p.bride.relation)}&nbsp; <b>${escapeHtml(CONFIG.intro.brideName)}</b></p>`;
 })();
 
-// ============ 연락처 모달 ============
-(function initContactModal() {
-  const btn = document.getElementById('contactBtn');
-  const modal = document.getElementById('contactModal');
-  if (!btn || !modal) return;
-
-  function contactRow(person) {
-    return `<div class="contact-row">
-      <div class="contact-row__info"><span class="rel">${escapeHtml(person.relation)}</span>${escapeHtml(person.name)}</div>
-      <a href="tel:${person.phone.replace(/[^0-9+]/g, '')}">전화하기</a>
-    </div>`;
-  }
-
-  function open() {
-    const c = CONFIG.contacts;
-    modal.innerHTML = `
-      <div class="modal-sheet">
-        <h3>축하 연락하기</h3>
-        <div class="contact-group">
-          <p class="contact-group__label">신랑측</p>
-          ${c.groom.map(contactRow).join('')}
-        </div>
-        <div class="contact-group">
-          <p class="contact-group__label">신부측</p>
-          ${c.bride.map(contactRow).join('')}
-        </div>
-        <button class="modal-close" id="contactModalClose">닫기</button>
-      </div>`;
-    modal.hidden = false;
-    document.getElementById('contactModalClose').addEventListener('click', close);
-  }
-  function close() { modal.hidden = true; }
-
-  btn.addEventListener('click', open);
-  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
-})();
-
 // ============ 3. 캘린더 / 디데이 ============
 (function renderCalendar() {
   const weddingDate = new Date(CONFIG.calendar.date);

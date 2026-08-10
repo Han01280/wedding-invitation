@@ -162,15 +162,6 @@ a { text-decoration: none; }
 .greeting__parents p { margin-bottom: 4px; }
 .greeting__parents p:last-child { margin-bottom: 0; }
 .greeting__parents b { font-weight: 700; }
-.btn-contact {
-  display: inline-block;
-  padding: 12px 26px;
-  border: 1px solid #b08d6b;
-  color: #b08d6b;
-  border-radius: 30px;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
 
 /* ---- 캘린더 ---- */
 .calendar__month { font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #b08d6b; margin-bottom: 20px; }
@@ -268,24 +259,6 @@ a { text-decoration: none; }
 .btn-kakao { width: 100%; padding: 14px; background: #FEE500; color: #391B1B; border-radius: 8px; font-size: 14px; font-weight: 700; }
 
 .footer { padding: 36px 30px 60px; text-align: center; font-size: 11px; color: #aaa; }
-
-/* ---- 연락처 모달 ---- */
-.modal-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500;
-  display: flex; align-items: flex-end; justify-content: center;
-}
-.modal-sheet {
-  width: 100%; max-width: 480px; background: #fff; border-radius: 18px 18px 0 0;
-  padding: 24px 24px 32px; max-height: 70vh; overflow-y: auto;
-}
-.modal-sheet h3 { font-family: 'Pretendard', sans-serif; font-size: 16px; margin-bottom: 16px; }
-.contact-group { margin-bottom: 18px; }
-.contact-group__label { font-size: 12px; color: #b08d6b; font-weight: 700; margin-bottom: 8px; }
-.contact-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f2f2f2; }
-.contact-row__info { font-size: 13px; }
-.contact-row__info .rel { color: #999; font-size: 11px; margin-right: 6px; }
-.contact-row a { font-size: 12px; color: #b08d6b; border: 1px solid #b08d6b; border-radius: 20px; padding: 5px 12px; }
-.modal-close { display: block; width: 100%; text-align: center; padding: 12px; font-size: 13px; color: #999; margin-top: 8px; }
 
 /* ---- BGM 토글 ---- */
 .bgm-toggle {
