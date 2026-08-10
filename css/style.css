@@ -180,14 +180,14 @@ a { text-decoration: none; }
 .video-wrap iframe { width: 100%; height: 100%; border: 0; }
 
 /* ---- 갤러리 (메인+화살표+썸네일) ---- */
-.gallery__main { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #eee; margin-bottom: 12px; }
+.gallery__main { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #eee; margin-bottom: 12px; }
 .gallery__main img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; user-select: none; -webkit-user-drag: none; }
 .gallery__thumbs-row { display: flex; align-items: center; gap: 6px; }
 .thumbnail-arrow { flex-shrink: 0; width: 22px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #999; background: none; }
 .gallery__thumbs { display: flex; gap: 6px; overflow-x: auto; flex: 1; scrollbar-width: none; }
 .gallery__thumbs::-webkit-scrollbar { display: none; }
 .gallery__thumbs img {
-  width: 56px; height: 56px; object-fit: cover; flex-shrink: 0;
+  width: 42px; height: 56px; object-fit: cover; flex-shrink: 0;
   opacity: .5; cursor: pointer; transition: opacity .2s; user-select: none; -webkit-user-drag: none;
 }
 .gallery__thumbs img.active { opacity: 1; outline: 2px solid #b08d6b; outline-offset: -2px; }
