@@ -313,17 +313,15 @@ async function copyText(text) {
   const m = CONFIG.map;
   document.getElementById('venueAddress').textContent = m.address;
 
-  if (CONFIG.kakao.appKey) {
-    const mapEl = document.getElementById('kakaoMap');
+  if (CONFIG.naver && CONFIG.naver.clientId) {
+    const mapEl = document.getElementById('mapEmbed');
     mapEl.hidden = false;
     const script = document.createElement('script');
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${CONFIG.kakao.appKey}&autoload=false`;
+    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${CONFIG.naver.clientId}`;
     script.onload = () => {
-      kakao.maps.load(() => {
-        const position = new kakao.maps.LatLng(m.lat, m.lng);
-        const map = new kakao.maps.Map(mapEl, { center: position, level: 4 });
-        new kakao.maps.Marker({ position, map });
-      });
+      const position = new naver.maps.LatLng(m.lat, m.lng);
+      const map = new naver.maps.Map(mapEl, { center: position, zoom: 16 });
+      new naver.maps.Marker({ position, map });
     };
     document.head.appendChild(script);
   }

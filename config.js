@@ -15,6 +15,11 @@ const CONFIG = {
     appKey: 'a0f929753500122457749aed8d5f67f8',
   },
 
+  // 네이버 지도 미리보기 (NCP - AI·NAVER API 콘솔에서 발급받은 Client ID)
+  naver: {
+    clientId: 'as2xbg8dov',
+  },
+
   // 커버(인트로)
   intro: {
     mainImage: 'images/main.jpg',
