@@ -219,12 +219,40 @@ async function copyText(text) {
 // ============ 5. 갤러리 ============
 (function initGallery() {
   const images = CONFIG.gallery;
-  const gridWrap = document.getElementById('galleryGrid');
-  if (!gridWrap || images.length === 0) return;
+  const mainImg = document.getElementById('galleryMainImg');
+  const thumbsWrap = document.getElementById('galleryThumbs');
+  const mainPrevBtn = document.getElementById('galleryPrev');
+  const mainNextBtn = document.getElementById('galleryNext');
+  if (!mainImg || images.length === 0) return;
 
-  gridWrap.innerHTML = images
-    .map((src, i) => `<img src="${src}" data-index="${i}" alt="갤러리 사진 ${i + 1}" loading="lazy">`)
+  let mainIndex = 0;
+
+  thumbsWrap.innerHTML = images
+    .map((src, i) => `<img src="${src}" data-index="${i}" alt="썸네일 ${i + 1}" loading="lazy">`)
     .join('');
+
+  function setMain(index, animate) {
+    mainIndex = index;
+    if (animate) {
+      mainImg.style.transition = 'opacity 0.25s ease';
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = images[mainIndex];
+        mainImg.style.opacity = '1';
+      }, 150);
+    } else {
+      mainImg.src = images[mainIndex];
+    }
+    thumbsWrap.querySelectorAll('img').forEach((t, i) => t.classList.toggle('active', i === mainIndex));
+  }
+  setMain(0, false);
+
+  mainPrevBtn.addEventListener('click', () => setMain((mainIndex - 1 + images.length) % images.length, true));
+  mainNextBtn.addEventListener('click', () => setMain((mainIndex + 1) % images.length, true));
+  thumbsWrap.querySelectorAll('img').forEach((t) => {
+    t.addEventListener('click', () => setMain(Number(t.dataset.index), true));
+  });
+  mainImg.addEventListener('click', () => openLightbox(mainIndex));
 
   let current = 0;
   const lightbox = document.getElementById('lightbox');
@@ -268,11 +296,10 @@ async function copyText(text) {
     }, 320);
   }
 
-  gridWrap.querySelectorAll('img').forEach((img) => {
-    img.addEventListener('click', () => openLightbox(Number(img.dataset.index)));
-  });
-
-  document.getElementById('lightboxClose').addEventListener('click', () => { lightbox.hidden = true; });
+  function closeLightbox() { lightbox.hidden = true; }
+  const closeBtn = document.getElementById('lightboxClose');
+  closeBtn.addEventListener('click', closeLightbox);
+  closeBtn.addEventListener('pointerup', closeLightbox);
   document.getElementById('lightboxPrev').addEventListener('click', () => goToImage(-1));
   document.getElementById('lightboxNext').addEventListener('click', () => goToImage(1));
   lightbox.addEventListener('click', (e) => {
@@ -339,7 +366,7 @@ async function copyText(text) {
   const q = encodeURIComponent(m.name);
   document.getElementById('kakaoMapBtn').href = `kakaomap://route?ep=${m.lat},${m.lng}&by=car`;
   document.getElementById('naverMapBtn').href = `nmap://navigation?dlat=36.8478727&dlng=127.1590854&dname=${encodeURIComponent('비렌티 웨딩홀 & 뷔페')}&appname=wedding-invitation-kappa-three-94.vercel.app`;
-  document.getElementById('tmapBtn').href = `tmap://route?goalname=${q}&goalx=${m.lng}&goaly=${m.lat}`;
+  document.getElementById('tmapBtn').href = `tmap://route?goalname=${encodeURIComponent('비렌티')}&goalx=${m.lng}&goaly=${m.lat}`;
 
   const t = m.transport;
   const CIRCLED_NUMS = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩'];
@@ -369,7 +396,7 @@ async function copyText(text) {
   if (list.length === 0) { section.hidden = true; return; }
   document.getElementById('informationList').innerHTML = list
     .map((item) => `<div class="info-block">
-      <p class="info-block__title">${escapeHtml(item.title)}</p>
+      ${item.title ? `<p class="info-block__title">${escapeHtml(item.title)}</p>` : ''}
       <p class="info-block__content">${nl2br(item.content)}</p>
     </div>`)
     .join('');
@@ -531,7 +558,7 @@ async function copyText(text) {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.25 });
   targets.forEach((t) => observer.observe(t));
 })();
 
