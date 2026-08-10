@@ -212,7 +212,7 @@ a { text-decoration: none; }
 .transport-list { text-align: left; font-size: 14px; line-height: 1.7; color: #666; background: #faf9f7; padding: 20px; border-radius: 10px; }
 .transport-group { padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px dashed #e3ded0; }
 .transport-group:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
-.transport-group b { display: block; color: #b08d6b; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+.transport-group b { display: block; color: #b08d6b; font-size: 14px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
 .transport-sublist { list-style: none; }
 .transport-sublist li { position: relative; padding-left: 14px; margin-bottom: 6px; }
 .transport-sublist li:last-child { margin-bottom: 0; }
@@ -220,7 +220,7 @@ a { text-decoration: none; }
 .transport-sublist li.transport-note { color: #999; font-size: 12px; }
 .transport-sublist li.transport-note::before { content: '※'; }
 .transport-steplist { list-style: none; margin-bottom: 10px; }
-.transport-steplist li.transport-step { margin-bottom: 10px; }
+.transport-steplist li.transport-step { margin-bottom: 10px; font-size: 13px; }
 .transport-steplist li.transport-step:last-child { margin-bottom: 0; }
 .transport-num { margin-right: 4px; }
 .transport-sub { padding-left: 20px; color: #999; font-size: 12px; margin-top: 3px; position: relative; }
