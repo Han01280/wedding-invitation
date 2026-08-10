@@ -317,10 +317,10 @@ a { text-decoration: none; }
   color: #999; font-size: 22px; z-index: 20; touch-action: manipulation;
 }
 .lightbox__arrow {
-  position: absolute; top: 0; bottom: 0; width: 40px;
+  position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 56px;
   background: none; color: #999; font-size: 34px; font-weight: 300;
   display: flex; align-items: center; justify-content: center;
-  z-index: 20; touch-action: manipulation;
+  z-index: 15; touch-action: manipulation;
 }
 .lightbox__arrow--prev { left: 4px; }
 .lightbox__arrow--next { right: 4px; }
