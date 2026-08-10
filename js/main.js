@@ -235,27 +235,30 @@ async function copyText(text) {
     current = index;
     lightboxImg.style.transition = 'none';
     lightboxImg.style.transform = 'translateX(0)';
-    lightboxImg.style.opacity = '1';
     lightboxImg.src = images[current];
     lightbox.hidden = false;
   }
 
   // direction: 1이면 다음 사진(왼쪽으로 슬라이드), -1이면 이전 사진(오른쪽으로 슬라이드)
+  // 사진이 화면 밖으로 완전히 슬라이드되어 나간 뒤, 반대편 화면 밖에서 다음 사진이 이어서 슬라이드 들어오는 방식
+  let isAnimating = false;
   function goToImage(index, direction) {
+    if (isAnimating) return;
+    isAnimating = true;
     current = (index + images.length) % images.length;
-    lightboxImg.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
-    lightboxImg.style.opacity = '0';
-    lightboxImg.style.transform = `translateX(${direction * -30}px)`;
+    const dist = window.innerWidth;
+    lightboxImg.style.transition = 'transform 0.3s ease';
+    lightboxImg.style.transform = `translateX(${direction * -dist}px)`;
     setTimeout(() => {
       lightboxImg.src = images[current];
       lightboxImg.style.transition = 'none';
-      lightboxImg.style.transform = `translateX(${direction * 30}px)`;
+      lightboxImg.style.transform = `translateX(${direction * dist}px)`;
       setTimeout(() => {
-        lightboxImg.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
-        lightboxImg.style.opacity = '1';
+        lightboxImg.style.transition = 'transform 0.3s ease';
         lightboxImg.style.transform = 'translateX(0)';
+        setTimeout(() => { isAnimating = false; }, 300);
       }, 20);
-    }, 180);
+    }, 300);
   }
 
   gridWrap.querySelectorAll('img').forEach((img) => {
@@ -263,6 +266,8 @@ async function copyText(text) {
   });
 
   document.getElementById('lightboxClose').addEventListener('click', () => { lightbox.hidden = true; });
+  document.getElementById('lightboxPrev').addEventListener('click', () => goToImage(current - 1, -1));
+  document.getElementById('lightboxNext').addEventListener('click', () => goToImage(current + 1, 1));
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.hidden = true; });
   document.addEventListener('keydown', (e) => {
     if (lightbox.hidden) return;
@@ -325,7 +330,7 @@ async function copyText(text) {
 
   const q = encodeURIComponent(m.name);
   document.getElementById('kakaoMapBtn').href = `kakaomap://route?ep=${m.lat},${m.lng}&by=car`;
-  document.getElementById('naverMapBtn').href = `nmap://navigation?dlat=${m.lat}&dlng=${m.lng}&dname=${q}&appname=wedding-invitation-kappa-three-94.vercel.app`;
+  document.getElementById('naverMapBtn').href = `nmap://navigation?dlat=36.8478727&dlng=127.1590854&dname=${encodeURIComponent('비렌티 웨딩홀 & 뷔페')}&appname=wedding-invitation-kappa-three-94.vercel.app`;
   document.getElementById('tmapBtn').href = `tmap://route?goalname=${q}&goalx=${m.lng}&goaly=${m.lat}`;
 
   const t = m.transport;

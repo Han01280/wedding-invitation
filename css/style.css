@@ -176,7 +176,7 @@ a { text-decoration: none; }
 .calendar__month { font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 700; color: #b08d6b; margin-bottom: 20px; }
 .wedding-date { font-size: 15px; font-weight: 700; color: #333; margin-bottom: 28px; }
 .wedding-venue { font-size: 14px; line-height: 1.7; color: #777; margin-bottom: 24px; }
-.calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 15px; margin-bottom: 22px; max-width: 300px; margin-left: auto; margin-right: auto; }
+.calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 15px; margin-bottom: 46px; max-width: 300px; margin-left: auto; margin-right: auto; }
 .calendar__grid .dow { color: #555; font-weight: 700; font-size: 13px; padding-bottom: 10px; }
 .calendar__grid .dow--sun { color: #b08d6b; }
 .calendar__grid .day { width: 34px; height: 34px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #333; }
@@ -296,9 +296,18 @@ a { text-decoration: none; }
   opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 600;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; z-index: 550; padding: 20px; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; z-index: 550; padding: 20px; overflow: hidden; }
 .lightbox img { max-height: 90vh; border-radius: 6px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; cursor: grab; }
-.lightbox__close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 22px; }
+.lightbox__close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 22px; z-index: 2; }
+.lightbox__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.85); font-size: 20px; color: #333;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25); z-index: 2;
+}
+.lightbox__arrow--prev { left: 14px; }
+.lightbox__arrow--next { right: 14px; }
 
 @media (max-width: 360px) {
   .section { padding: 48px 20px; }
