@@ -1,3 +1,14 @@
+// ============ 확대(줌) 방지 ============
+(function preventZoom() {
+  document.addEventListener('gesturestart', (e) => e.preventDefault());
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', (e) => {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) e.preventDefault();
+    lastTouchEnd = now;
+  }, { passive: false });
+})();
+
 // ============ 유틸 ============
 function escapeHtml(str) {
   const div = document.createElement('div');
@@ -124,8 +135,8 @@ async function copyText(text) {
     .join('');
   const p = CONFIG.parents;
   document.getElementById('greetingParents').innerHTML =
-    `<p>${escapeHtml(p.groom.father)} · ${escapeHtml(p.groom.mother)} 의 ${escapeHtml(p.groom.relation)}&nbsp; <b>${escapeHtml(CONFIG.intro.groomName)}</b></p>` +
-    `<p>${escapeHtml(p.bride.father)} · ${escapeHtml(p.bride.mother)} 의 ${escapeHtml(p.bride.relation)}&nbsp; <b>${escapeHtml(CONFIG.intro.brideName)}</b></p>`;
+    `<p>${escapeHtml(p.groom.father)} · ${escapeHtml(p.groom.mother)} 의 ${escapeHtml(p.groom.relation)}&nbsp;&nbsp; <b>${escapeHtml(CONFIG.intro.groomName)}</b></p>` +
+    `<p>${escapeHtml(p.bride.father)} · ${escapeHtml(p.bride.mother)} 의 ${escapeHtml(p.bride.relation)}&nbsp;&nbsp; <b>${escapeHtml(CONFIG.intro.brideName)}</b></p>`;
 })();
 
 // ============ 3. 캘린더 / 디데이 ============
@@ -194,6 +205,22 @@ async function copyText(text) {
     .map((src, i) => `<img src="${src}" data-index="${i}" alt="썸네일 ${i + 1}" loading="lazy">`)
     .join('');
 
+  function shiftThumbStrip(index) {
+    const thumbEl = thumbsWrap.firstElementChild;
+    if (!thumbEl) return;
+    const gapPx = parseFloat(getComputedStyle(thumbsWrap).gap) || 0;
+    const slot = thumbEl.getBoundingClientRect().width + gapPx;
+    if (!slot) return;
+    const firstVisibleIndex = Math.round(thumbsWrap.scrollLeft / slot);
+    const position = index - firstVisibleIndex + 1;
+    const maxScroll = thumbsWrap.scrollWidth - thumbsWrap.clientWidth;
+    let target = thumbsWrap.scrollLeft;
+    if (position >= 5) target += slot;
+    else if (position <= 4) target -= slot;
+    target = Math.max(0, Math.min(maxScroll, target));
+    thumbsWrap.scrollLeft = target;
+  }
+
   function setMain(index, animate) {
     mainIndex = index;
     if (animate) {
@@ -207,6 +234,7 @@ async function copyText(text) {
       mainImg.src = images[mainIndex];
     }
     thumbsWrap.querySelectorAll('img').forEach((t, i) => t.classList.toggle('active', i === mainIndex));
+    shiftThumbStrip(mainIndex);
   }
   setMain(0, false);
 
@@ -368,9 +396,13 @@ async function copyText(text) {
 // ============ 8. 계좌 아코디언 ============
 (function renderAccounts() {
   function row(a) {
+    const payBtn = a.payUrl ? `<a class="btn-kakaopay-sm" href="${escapeHtml(a.payUrl)}" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3C5.6 3 2 5.9 2 9.5c0 2.3 1.5 4.3 3.7 5.5l-.9 3.3c-.1.3.2.6.5.4l3.9-2.6c.3 0 .5 0 .8 0 4.4 0 8-2.9 8-6.6S14.4 3 10 3z" fill="#391B1B"/></svg>pay</a>` : '';
     return `<div class="account-row">
       <div><span class="account-row__who">${escapeHtml(a.name)}</span><span class="account-row__num">${escapeHtml(a.bank)} ${escapeHtml(a.number)}</span></div>
-      <button type="button" class="btn-ghost-sm" data-copy-text="${escapeHtml(a.bank)} ${escapeHtml(a.number)}">복사</button>
+      <div class="account-row__actions">
+        <button type="button" class="btn-ghost-sm" data-copy-text="${escapeHtml(a.bank)} ${escapeHtml(a.number)}">복사</button>
+        ${payBtn}
+      </div>
     </div>`;
   }
   document.getElementById('accGroom').innerHTML = CONFIG.accounts.groom.map(row).join('');
