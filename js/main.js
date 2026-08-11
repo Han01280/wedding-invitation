@@ -280,9 +280,9 @@ async function copyText(text) {
     track.style.transform = `translateX(${direction === 1 ? '-66.6666%' : '0%'})`;
     setTimeout(() => {
       current = idx(direction);
+      syncSlides();
       track.style.transition = 'none';
       track.style.transform = 'translateX(-33.3333%)';
-      syncSlides();
       isAnimating = false;
     }, 320);
   }
@@ -400,7 +400,7 @@ async function copyText(text) {
       ? `<a class="btn-kakaopay-sm" href="${escapeHtml(a.payUrl)}" target="_blank" rel="noopener"><svg width="10" height="10" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3C5.6 3 2 5.9 2 9.5c0 2.3 1.5 4.3 3.7 5.5l-.9 3.3c-.1.3.2.6.5.4l3.9-2.6c.3 0 .5 0 .8 0 4.4 0 8-2.9 8-6.6S14.4 3 10 3z" fill="#391B1B"/></svg>pay</a>`
       : `<span class="btn-kakaopay-sm" style="visibility:hidden;" aria-hidden="true">pay</span>`;
     return `<div class="account-row">
-      <div><span class="account-row__who">${escapeHtml(a.name)}</span><span class="account-row__num">${escapeHtml(a.bank)}&nbsp; ${escapeHtml(a.number)}</span></div>
+      <div><span class="account-row__who">${escapeHtml(a.name)}</span><span class="account-row__num">${escapeHtml(a.bank)} ${escapeHtml(a.number)}</span></div>
       <div class="account-row__actions">
         <button type="button" class="btn-ghost-sm" data-copy-text="${escapeHtml(a.bank)} ${escapeHtml(a.number)}">복사</button>
         ${payBtn}
