@@ -101,8 +101,8 @@ const CONFIG = {
     ],
     bride: [
       { name: '신부 노규민', bank: '농협', number: '356-0453-2820-13', payUrl: 'https://qr.kakaopay.com/Ej7pMXx9h' },
-      { name: '어머니 양경화', bank: '농협', number: '356-1235-6337-43' },
       { name: '아버지 노상호', bank: '농협', number: '356-0961-6673-83' },
+      { name: '어머니 양경화', bank: '농협', number: '356-1235-6337-43' },
     ],
   },
 
