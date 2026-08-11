@@ -266,6 +266,7 @@ async function copyText(text) {
   function openLightbox(index) {
     current = index;
     track.style.transition = 'none';
+    void track.offsetHeight;
     track.style.transform = 'translateX(-33.3333%)';
     syncSlides();
     lightbox.hidden = false;
@@ -282,6 +283,7 @@ async function copyText(text) {
       current = idx(direction);
       syncSlides();
       track.style.transition = 'none';
+      void track.offsetHeight; // 강제 리플로우 — transition:none이 확실히 적용된 뒤에 transform을 바꿔야 순간 애니메이션(번쩍임)이 발생하지 않음
       track.style.transform = 'translateX(-33.3333%)';
       isAnimating = false;
     }, 320);
