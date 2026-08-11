@@ -219,6 +219,8 @@ a { text-decoration: none; }
 .transport-sub::before { content: '-'; position: absolute; left: 6px; color: #c9bfa8; }
 .transport-sub--plain::before { content: none; }
 
+.venue-guide-img { width: 100%; border-radius: 10px; }
+
 /* ---- 정보 블록 ---- */
 .info-block { margin-bottom: 26px; }
 .info-block:last-child { margin-bottom: 0; }
