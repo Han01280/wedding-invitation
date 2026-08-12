@@ -296,7 +296,7 @@ a { text-decoration: none; }
 .lightbox { position: fixed; inset: 0; background: #fff; z-index: 550; overflow: hidden; }
 .lightbox__track { display: flex; width: 300%; height: 100%; transform: translateX(-33.3333%); }
 .lightbox__slide { width: 33.3333%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0; box-sizing: border-box; }
-.lightbox__slide img { max-height: 100%; max-width: 100%; border-radius: 0; touch-action: pan-y; user-select: none; -webkit-user-drag: none; cursor: grab; }
+.lightbox__slide img { max-height: 100%; max-width: 100%; border-radius: 0; touch-action: none; user-select: none; -webkit-user-drag: none; cursor: grab; }
 .lightbox__close {
   position: absolute; top: 12px; right: 4px; width: 48px; height: 48px;
   display: flex; align-items: center; justify-content: center;

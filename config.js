@@ -95,7 +95,7 @@ const CONFIG = {
   // 마음 전하실 곳
   accounts: {
     groom: [
-      { name: '신랑 이병한', bank: '기업은행', number: '561-026940-01-014', payUrl: 'https://qr.kakaopay.com/Ej8VX1m3e' },
+      { name: '신랑 이병한', bank: '기업', number: '561-026940-01-014', payUrl: 'https://qr.kakaopay.com/Ej8VX1m3e' },
       { name: '아버지 이상훈', bank: '농협', number: '415-12-337021' },
       { name: '어머니 이지영', bank: '농협', number: '173607-52-149601' },
     ],

@@ -270,6 +270,7 @@ async function copyText(text) {
     track.style.transform = 'translateX(-33.3333%)';
     syncSlides();
     lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
   }
 
   // 트랙(이전+현재+다음 3장)을 통째로 슬라이드시켜 사진끼리 자연스럽게 이어지도록 전환
@@ -289,7 +290,7 @@ async function copyText(text) {
     }, 320);
   }
 
-  function closeLightbox() { lightbox.hidden = true; }
+  function closeLightbox() { lightbox.hidden = true; document.body.style.overflow = ''; }
   lightbox.addEventListener('click', (e) => {
     if (e.target.closest('#lightboxClose')) { closeLightbox(); return; }
     if (e.target.closest('#lightboxPrev')) { goToImage(-1); return; }
@@ -356,10 +357,22 @@ async function copyText(text) {
     document.head.appendChild(script);
   }
 
-  const q = encodeURIComponent(m.name);
-  document.getElementById('kakaoMapBtn').href = `kakaomap://route?ep=${m.lat},${m.lng}&by=car`;
-  document.getElementById('naverMapBtn').href = `nmap://navigation?dlat=36.8478727&dlng=127.1590854&dname=${encodeURIComponent('비렌티 웨딩홀 & 뷔페')}&appname=wedding-invitation-kappa-three-94.vercel.app`;
-  document.getElementById('tmapBtn').href = `tmap://route?goalname=${encodeURIComponent('비렌티')}&goalx=${m.lng}&goaly=${m.lat}`;
+  function openWithFallback(appUrl, webUrl) {
+    window.location.href = appUrl;
+    setTimeout(() => { window.location.href = webUrl; }, 700);
+  }
+
+  const naverApp = `nmap://route/car?dlat=${m.lat}&dlng=${m.lng}&dname=${encodeURIComponent(m.name)}&appname=${location.hostname}`;
+  const naverWeb = `https://map.naver.com/v5/directions/-/${m.lng},${m.lat},${encodeURIComponent(m.name)},PLACE_POI/-/car`;
+  document.getElementById('naverMapBtn').addEventListener('click', () => openWithFallback(naverApp, naverWeb));
+
+  const kakaoApp = `kakaomap://route?ep=${m.lat},${m.lng}&epName=${encodeURIComponent(m.name)}&by=CAR`;
+  const kakaoWeb = `https://map.kakao.com/link/to/${encodeURIComponent(m.name)},${m.lat},${m.lng}`;
+  document.getElementById('kakaoMapBtn').addEventListener('click', () => openWithFallback(kakaoApp, kakaoWeb));
+
+  const tmapApp = `tmap://route?goalname=${encodeURIComponent('비렌티')}&goalx=${m.lng}&goaly=${m.lat}`;
+  const tmapWeb = 'https://www.tmap.co.kr/';
+  document.getElementById('tmapBtn').addEventListener('click', () => openWithFallback(tmapApp, tmapWeb));
 
   const t = m.transport;
   const CIRCLED_NUMS = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩'];
@@ -552,10 +565,7 @@ async function copyText(text) {
   const targets = document.querySelectorAll('.fade-up');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
-      }
+      entry.target.classList.toggle('show', entry.isIntersecting);
     });
   }, { threshold: 0.25 });
   targets.forEach((t) => observer.observe(t));
