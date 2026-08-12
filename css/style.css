@@ -188,7 +188,7 @@ a { text-decoration: none; }
 .gallery__thumbs { display: flex; gap: 6px; overflow-x: auto; flex: 1; scrollbar-width: none; }
 .gallery__thumbs::-webkit-scrollbar { display: none; }
 .gallery__thumbs img {
-  width: 45px; height: 60px; object-fit: cover; flex-shrink: 0;
+  width: 51px; height: 68px; object-fit: cover; flex-shrink: 0;
   opacity: .5; cursor: pointer; transition: opacity .2s; user-select: none; -webkit-user-drag: none;
 }
 .gallery__thumbs img.active { opacity: 1; outline: 2px solid #b08d6b; outline-offset: -2px; }
