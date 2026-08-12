@@ -215,8 +215,8 @@ async function copyText(text) {
     const position = index - firstVisibleIndex + 1;
     const maxScroll = thumbsWrap.scrollWidth - thumbsWrap.clientWidth;
     let target = thumbsWrap.scrollLeft;
-    if (position >= 5) target += slot;
-    else if (position <= 4) target -= slot;
+    if (position >= 4) target += slot;
+    else if (position <= 3) target -= slot;
     target = Math.max(0, Math.min(maxScroll, target));
     thumbsWrap.scrollLeft = target;
   }
