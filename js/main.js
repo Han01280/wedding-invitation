@@ -288,10 +288,15 @@ async function copyText(text) {
     setTimeout(() => {
       current = idx(direction);
       syncSlides();
-      track.style.transition = 'none';
-      void track.offsetHeight; // 강제 리플로우 — transition:none이 확실히 적용된 뒤에 transform을 바꿔야 순간 애니메이션(번쩍임)이 발생하지 않음
-      track.style.transform = 'translateX(-33.3333%)';
-      isAnimating = false;
+      // 사파리는 다른 <img> 엘리먼트에서 이미 디코딩된 이미지라도 src를 재할당하면 다시 디코딩하는 경우가 있어
+      // 화면에 보일 imgCurrent가 완전히 디코딩된 뒤에 위치를 되돌려야 이전 사진이 잠깐 보이는 현상이 사라진다
+      const ready = imgCurrent.decode ? imgCurrent.decode().catch(() => {}) : Promise.resolve();
+      ready.then(() => {
+        track.style.transition = 'none';
+        void track.offsetHeight; // 강제 리플로우 — transition:none이 확실히 적용된 뒤에 transform을 바꿔야 순간 애니메이션(번쩍임)이 발생하지 않음
+        track.style.transform = 'translateX(-33.3333%)';
+        isAnimating = false;
+      });
     }, 320);
   }
 
