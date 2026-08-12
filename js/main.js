@@ -263,6 +263,10 @@ async function copyText(text) {
     imgNext.src = images[idx(1)];
   }
 
+  // iOS Safari는 body의 overflow:hidden만으로는 스와이프 중 주소창이 접혔다 펴지는(뷰포트 높이 변경) 것을 완전히 막지 못해
+  // 라이트박스가 열려있는 동안 touchmove 자체를 막아 스크롤/주소창 애니메이션을 원천 차단한다
+  function preventTouchScroll(e) { e.preventDefault(); }
+
   function openLightbox(index) {
     current = index;
     track.style.transition = 'none';
@@ -271,6 +275,7 @@ async function copyText(text) {
     syncSlides();
     lightbox.hidden = false;
     document.body.style.overflow = 'hidden';
+    document.addEventListener('touchmove', preventTouchScroll, { passive: false });
   }
 
   // 트랙(이전+현재+다음 3장)을 통째로 슬라이드시켜 사진끼리 자연스럽게 이어지도록 전환
@@ -290,7 +295,11 @@ async function copyText(text) {
     }, 320);
   }
 
-  function closeLightbox() { lightbox.hidden = true; document.body.style.overflow = ''; }
+  function closeLightbox() {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+    document.removeEventListener('touchmove', preventTouchScroll);
+  }
   lightbox.addEventListener('click', (e) => {
     if (e.target.closest('#lightboxClose')) { closeLightbox(); return; }
     if (e.target.closest('#lightboxPrev')) { goToImage(-1); return; }
