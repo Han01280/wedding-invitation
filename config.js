@@ -118,6 +118,6 @@ const CONFIG = {
   share: {
     title: '이병한 ♥ 노규민 결혼합니다.',
     description: '2026년 12월 20일 일요일 낮 12시\n천안 비렌티 웨딩홀',
-    kakaoThumbnail: 'https://wedding-invitation-kappa-three-94.vercel.app/images/kakao-cover-v3.jpg',
+    kakaoThumbnail: 'https://wedding-invitation-kappa-three-94.vercel.app/images/kakao-cover-v4.jpg',
   },
 };
