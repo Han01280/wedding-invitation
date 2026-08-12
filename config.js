@@ -64,6 +64,8 @@ const CONFIG = {
     address: '충남 천안시 서북구 천안대로 1198-30',
     lat: 36.847863, // 카카오맵 장소 검색(비렌티웨딩홀)으로 확인한 정확한 좌표
     lng: 127.159087,
+    naverPlaceName: '비렌티 웨딩홀 & 뷔페', // 네이버지도 자체 등록된 장소명 (naver.me 단축링크로 확인)
+    kakaoPlaceName: '비렌티웨딩홀', // 카카오맵 자체 등록된 장소명 (kko.to 단축링크로 확인)
     transport: {
       shuttle: {
         steps: [

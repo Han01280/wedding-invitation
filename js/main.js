@@ -362,12 +362,12 @@ async function copyText(text) {
     setTimeout(() => { window.location.href = webUrl; }, 700);
   }
 
-  const naverApp = `nmap://route/car?dlat=${m.lat}&dlng=${m.lng}&dname=${encodeURIComponent(m.name)}&appname=${location.hostname}`;
-  const naverWeb = `https://map.naver.com/v5/directions/-/${m.lng},${m.lat},${encodeURIComponent(m.name)},PLACE_POI/-/car`;
+  const naverApp = `nmap://route/car?dlat=${m.lat}&dlng=${m.lng}&dname=${encodeURIComponent(m.naverPlaceName)}&appname=${location.hostname}`;
+  const naverWeb = `https://map.naver.com/v5/directions/-/${m.lng},${m.lat},${encodeURIComponent(m.naverPlaceName)},PLACE_POI/-/car`;
   document.getElementById('naverMapBtn').addEventListener('click', () => openWithFallback(naverApp, naverWeb));
 
-  const kakaoApp = `kakaomap://route?ep=${m.lat},${m.lng}&epName=${encodeURIComponent(m.name)}&by=CAR`;
-  const kakaoWeb = `https://map.kakao.com/link/to/${encodeURIComponent(m.name)},${m.lat},${m.lng}`;
+  const kakaoApp = `kakaomap://route?ep=${m.lat},${m.lng}&epName=${encodeURIComponent(m.kakaoPlaceName)}&by=CAR`;
+  const kakaoWeb = `https://map.kakao.com/link/to/${encodeURIComponent(m.kakaoPlaceName)},${m.lat},${m.lng}`;
   document.getElementById('kakaoMapBtn').addEventListener('click', () => openWithFallback(kakaoApp, kakaoWeb));
 
   const tmapApp = `tmap://route?goalname=${encodeURIComponent('비렌티')}&goalx=${m.lng}&goaly=${m.lat}`;
