@@ -17,6 +17,29 @@ img { max-width: 100%; display: block; -webkit-user-select: none; user-select: n
 button, a { background: none; border: none; cursor: pointer; font-family: inherit; color: inherit; }
 a { text-decoration: none; }
 
+.coming-soon {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #efe9df;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+.coming-soon__emoji { font-size: 40px; margin-bottom: 20px; }
+.coming-soon__names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  color: #b08d6b;
+  margin-bottom: 24px;
+}
+.coming-soon__title { font-size: 17px; font-weight: 700; color: #333; margin-bottom: 12px; }
+.coming-soon__desc { font-size: 14px; color: #777; line-height: 1.7; }
+
 .card {
   width: 100%;
   max-width: 480px;

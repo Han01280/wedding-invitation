@@ -1,3 +1,16 @@
+// ============ 준비 중 화면 ============
+(function initComingSoon() {
+  if (!CONFIG.comingSoon) return;
+  const screen = document.getElementById('comingSoonScreen');
+  const card = document.querySelector('.card');
+  const namesEl = document.getElementById('comingSoonNames');
+  if (namesEl && CONFIG.intro) {
+    namesEl.textContent = `${CONFIG.intro.groomName} ♥ ${CONFIG.intro.brideName}`;
+  }
+  if (card) card.hidden = true;
+  if (screen) screen.hidden = false;
+})();
+
 // ============ 확대(줌) 방지 ============
 (function preventZoom() {
   document.addEventListener('gesturestart', (e) => e.preventDefault());
@@ -356,7 +369,7 @@ async function copyText(text) {
   const m = CONFIG.map;
   document.getElementById('venueAddress').textContent = m.address;
 
-  if (CONFIG.kakao && CONFIG.kakao.appKey) {
+  if (!CONFIG.comingSoon && CONFIG.kakao && CONFIG.kakao.appKey) {
     const mapEl = document.getElementById('mapEmbed');
     mapEl.hidden = false;
     const script = document.createElement('script');
@@ -517,7 +530,7 @@ async function copyText(text) {
   });
 
   const kakaoBtn = document.getElementById('kakaoShareBtn');
-  if (CONFIG.kakao.appKey) {
+  if (!CONFIG.comingSoon && CONFIG.kakao.appKey) {
     const script = document.createElement('script');
     script.src = 'https://developers.kakao.com/sdk/js/kakao.min.js';
     script.onload = () => {
@@ -549,7 +562,7 @@ async function copyText(text) {
 // ============ BGM ============
 (function initBgm() {
   const toggle = document.getElementById('bgmToggle');
-  if (!CONFIG.bgm.enabled) return;
+  if (CONFIG.comingSoon || !CONFIG.bgm.enabled) return;
   const audio = new Audio(CONFIG.bgm.src);
   audio.loop = true;
   toggle.hidden = false;
