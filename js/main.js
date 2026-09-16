@@ -317,6 +317,7 @@ async function copyText(text) {
 // ============ 6. 오시는 길 ============
 (function renderMap() {
   const m = CONFIG.map;
+  document.getElementById('venueName').textContent = m.venueName || m.name;
   document.getElementById('venueAddress').textContent = m.address;
 
   if (!CONFIG.comingSoon && CONFIG.kakao && CONFIG.kakao.appKey) {
