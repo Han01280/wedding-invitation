@@ -413,19 +413,6 @@ async function copyText(text) {
   document.getElementById('transportList').innerHTML = rows.join('');
 })();
 
-// ============ 7. 안내사항 ============
-(function renderInformation() {
-  const list = CONFIG.information || [];
-  const section = document.getElementById('informationSection');
-  if (list.length === 0) { section.hidden = true; return; }
-  document.getElementById('informationList').innerHTML = list
-    .map((item) => `<div class="info-block">
-      ${item.title ? `<p class="info-block__title">${escapeHtml(item.title)}</p>` : ''}
-      <p class="info-block__content">${nl2br(item.content)}</p>
-    </div>`)
-    .join('');
-})();
-
 // ============ 8. 계좌 아코디언 ============
 (function renderAccounts() {
   function row(a) {
