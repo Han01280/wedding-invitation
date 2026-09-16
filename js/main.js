@@ -73,22 +73,16 @@ async function copyText(text) {
 
   if (style === 'vintage') {
     hero.classList.add('hero--vintage');
-    const groomEn = (c.groomNameEn || '').replace(/\s+/g, '').toLowerCase();
-    const brideEn = (c.brideNameEn || '').replace(/\s+/g, '').toLowerCase();
-    const cursiveNamesHtml = (groomEn && brideEn)
-      ? `<p class="hero-names-script script-font">${escapeHtml(groomEn)} &amp; ${escapeHtml(brideEn)}</p>`
-      : `<p class="hero-names-script script-font">${escapeHtml(c.groomName)} &amp; ${escapeHtml(c.brideName)}</p>`;
     const playBtn = CONFIG.video && CONFIG.video.enabled ? '<button class="vintage-play" id="heroPlayBtn" aria-label="영상 재생">▶</button>' : '';
     hero.innerHTML = `
       <p class="hero-star">✳</p>
-      <p class="hero-label section__label">Invitation</p>
+      <p class="hero-label">With Love</p>
+      <p class="hero-cursive script-font">invitation</p>
       <div class="vintage-photo">
         <img src="${c.mainImage}" alt="메인 사진">
         ${playBtn}
       </div>
-      <p class="hero-label section__label">Wedding Day</p>
-      ${cursiveNamesHtml}
-      <p class="hero-date-venue">${escapeHtml(c.dateText)}<br>${nl2br(c.venueShort)}</p>`;
+      <p class="hero-date-venue">${nl2br(c.venueShort)}<br>${escapeHtml(c.dateText)}</p>`;
     const heroPlayBtn = document.getElementById('heroPlayBtn');
     if (heroPlayBtn) {
       heroPlayBtn.addEventListener('click', () => {
@@ -226,6 +220,7 @@ async function copyText(text) {
   const imgPrev = document.getElementById('lightboxImgPrev');
   const imgCurrent = document.getElementById('lightboxImgCurrent');
   const imgNext = document.getElementById('lightboxImgNext');
+  const counter = document.getElementById('lightboxCounter');
   const SWIPE_THRESHOLD = 50;
   const TRANSITION = 'transform 0.32s ease';
 
@@ -236,6 +231,7 @@ async function copyText(text) {
     imgPrev.src = images[idx(-1)];
     imgCurrent.src = images[current];
     imgNext.src = images[idx(1)];
+    if (counter) counter.textContent = `${current + 1} / ${images.length}`;
   }
 
   // iOS Safari는 body의 overflow:hidden만으로는 스와이프 중 주소창이 접혔다 펴지는(뷰포트 높이 변경) 것을 완전히 막지 못해
