@@ -17,6 +17,16 @@
 </head>
 <body>
 
+<div id="envelopeIntro" class="envelope-intro">
+  <div class="envelope">
+    <div class="envelope__body"></div>
+    <div class="envelope__letter"></div>
+    <div class="envelope__pocket"></div>
+    <div class="envelope__flap"></div>
+    <div class="envelope__heart">♥</div>
+  </div>
+</div>
+
 <div id="comingSoonScreen" class="coming-soon" hidden>
   <p class="coming-soon__emoji">💌</p>
   <p class="coming-soon__names" id="comingSoonNames"></p>
@@ -45,16 +55,16 @@
   </section>
 
   <!-- 3. 캘린더 -->
-  <section class="section">
+  <section class="section section--dark">
+    <p class="section__label section__label--light fade-up">Date</p>
     <div class="fade-up">
-      <p class="section__label">Wedding Day</p>
-      <p id="weddingDateText" class="wedding-date"></p>
-      <p id="weddingVenueText" class="wedding-venue"></p>
+      <img src="images/calendar-photo.jpg" alt="캘린더 사진" class="calendar-photo">
     </div>
     <div class="fade-up">
-      <p id="calendarMonth" class="calendar__month"></p>
-      <div id="calendarGrid" class="calendar__grid" aria-label="예식 월 달력"></div>
-      <p id="ddayText" class="calendar__dday">계산 중...</p>
+      <p id="calendarMonth" class="calendar__month calendar__month--dark serif-font"></p>
+      <div id="calendarGrid" class="calendar__grid calendar__grid--dark" aria-label="예식 월 달력"></div>
+      <p id="calendarFullDate" class="calendar-full-date serif-font"></p>
+      <p id="ddayText" class="calendar__dday calendar__dday--light">계산 중...</p>
     </div>
   </section>
 
@@ -68,16 +78,14 @@
 
   <!-- 5. 갤러리 -->
   <section class="section">
-    <p class="section__label fade-up">Gallery</p>
+    <p class="section__label fade-up">Wedding Gallery</p>
     <div class="fade-up">
-      <div class="gallery__main">
-        <img id="galleryMainImg" alt="갤러리 대표 이미지">
+      <div class="gallery-stack-wrap">
+        <button id="galleryPrev" class="gallery-stack-arrow gallery-stack-arrow--prev" aria-label="이전 사진">‹</button>
+        <div id="galleryStack" class="gallery-stack"></div>
+        <button id="galleryNext" class="gallery-stack-arrow gallery-stack-arrow--next" aria-label="다음 사진">›</button>
       </div>
-      <div class="gallery__thumbs-row">
-        <button id="galleryPrev" class="thumbnail-arrow" aria-label="이전 이미지">‹</button>
-        <div id="galleryThumbs" class="gallery__thumbs"></div>
-        <button id="galleryNext" class="thumbnail-arrow" aria-label="다음 이미지">›</button>
-      </div>
+      <p class="gallery-quote">It was not only a moment we shared,<br>but a love held forever.</p>
     </div>
   </section>
 

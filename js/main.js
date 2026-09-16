@@ -11,6 +11,14 @@
   if (screen) screen.hidden = false;
 })();
 
+// ============ 인트로: 편지봉투 오픈 모션 ============
+(function initEnvelopeIntro() {
+  const envelope = document.getElementById('envelopeIntro');
+  if (!envelope) return;
+  if (CONFIG.comingSoon) { envelope.hidden = true; return; }
+  setTimeout(() => { envelope.hidden = true; }, 3200);
+})();
+
 // ============ 확대(줌) 방지 ============
 (function preventZoom() {
   document.addEventListener('gesturestart', (e) => e.preventDefault());
@@ -65,13 +73,11 @@ async function copyText(text) {
 
   if (style === 'vintage') {
     hero.classList.add('hero--vintage');
-    const hasEnglishNames = c.groomNameEn && c.brideNameEn;
-    const namesHtml = hasEnglishNames
-      ? ''
-      : `<p class="vintage-names vintage-names--kr serif-font">${escapeHtml(c.groomName)} · ${escapeHtml(c.brideName)}</p>`;
-    const namesEnHtml = hasEnglishNames
-      ? `<p class="vintage-names-en">${escapeHtml(c.groomNameEn)} &amp; ${escapeHtml(c.brideNameEn)}</p>`
-      : '';
+    const groomEn = (c.groomNameEn || '').replace(/\s+/g, '').toLowerCase();
+    const brideEn = (c.brideNameEn || '').replace(/\s+/g, '').toLowerCase();
+    const cursiveNamesHtml = (groomEn && brideEn)
+      ? `<p class="hero-names-script script-font">${escapeHtml(groomEn)} &amp; ${escapeHtml(brideEn)}</p>`
+      : `<p class="hero-names-script script-font">${escapeHtml(c.groomName)} &amp; ${escapeHtml(c.brideName)}</p>`;
     const playBtn = CONFIG.video && CONFIG.video.enabled ? '<button class="vintage-play" id="heroPlayBtn" aria-label="영상 재생">▶</button>' : '';
     const frameSvg = '<svg class="frame-svg"><path fill="none" stroke="#fff"/></svg>';
     hero.innerHTML = `
@@ -79,18 +85,15 @@ async function copyText(text) {
         ${frameSvg}
         <div class="vintage-frame__inner">
           ${frameSvg}
-          <svg class="vintage-flourish" viewBox="0 0 220 34" aria-hidden="true">
-            <path d="M110,17 C95,4 78,4 68,13 C60,20 68,27 76,22 C82,18 78,10 70,11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M110,17 C125,4 142,4 152,13 C160,20 152,27 144,22 C138,18 142,10 150,11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            <circle cx="110" cy="17" r="2.5" fill="currentColor"/>
-          </svg>
-          <p class="vintage-frame__label">Happy Wedding Day</p>
+          <p class="hero-star">✳</p>
+          <p class="hero-label section__label">Invitation</p>
           <div class="vintage-photo">
             <img src="${c.mainImage}" alt="메인 사진">
             ${playBtn}
           </div>
-          ${namesHtml}
-          ${namesEnHtml}
+          <p class="hero-label section__label">Wedding Day</p>
+          ${cursiveNamesHtml}
+          <p class="hero-date-venue">${escapeHtml(c.dateText)}<br>${nl2br(c.venueShort)}</p>
         </div>
       </div>`;
     const heroPlayBtn = document.getElementById('heroPlayBtn');
@@ -159,10 +162,10 @@ async function copyText(text) {
   const ddayEl = document.getElementById('ddayText');
   if (!grid) return;
 
-  const dateTextEl = document.getElementById('weddingDateText');
-  const venueTextEl = document.getElementById('weddingVenueText');
-  if (dateTextEl) dateTextEl.textContent = CONFIG.intro.dateText;
-  if (venueTextEl) venueTextEl.innerHTML = nl2br(CONFIG.intro.venueShort);
+  const fullDateEl = document.getElementById('calendarFullDate');
+  if (fullDateEl) {
+    fullDateEl.textContent = weddingDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  }
 
   const year = weddingDate.getFullYear();
   const month = weddingDate.getMonth();
@@ -206,57 +209,43 @@ async function copyText(text) {
 // ============ 5. 갤러리 ============
 (function initGallery() {
   const images = CONFIG.gallery;
-  const mainImg = document.getElementById('galleryMainImg');
-  const thumbsWrap = document.getElementById('galleryThumbs');
-  const mainPrevBtn = document.getElementById('galleryPrev');
-  const mainNextBtn = document.getElementById('galleryNext');
-  if (!mainImg || images.length === 0) return;
+  const stack = document.getElementById('galleryStack');
+  const prevBtn = document.getElementById('galleryPrev');
+  const nextBtn = document.getElementById('galleryNext');
+  if (!stack || images.length === 0) return;
 
-  let mainIndex = 0;
+  const PER_PAGE = 3;
+  const pageCount = Math.ceil(images.length / PER_PAGE);
+  let page = 0;
 
-  thumbsWrap.innerHTML = images
-    .map((src, i) => `<img src="${src}" data-index="${i}" alt="썸네일 ${i + 1}" loading="lazy">`)
-    .join('');
-
-  function shiftThumbStrip(index) {
-    const thumbEl = thumbsWrap.firstElementChild;
-    if (!thumbEl) return;
-    const gapPx = parseFloat(getComputedStyle(thumbsWrap).gap) || 0;
-    const slot = thumbEl.getBoundingClientRect().width + gapPx;
-    if (!slot) return;
-    const firstVisibleIndex = Math.round(thumbsWrap.scrollLeft / slot);
-    const position = index - firstVisibleIndex + 1;
-    const maxScroll = thumbsWrap.scrollWidth - thumbsWrap.clientWidth;
-    let target = thumbsWrap.scrollLeft;
-    if (position >= 4) target += slot;
-    else if (position <= 3) target -= slot;
-    target = Math.max(0, Math.min(maxScroll, target));
-    thumbsWrap.scrollLeft = target;
-  }
-
-  function setMain(index, animate) {
-    mainIndex = index;
+  function renderPage(animate) {
+    const start = page * PER_PAGE;
+    const items = images.slice(start, start + PER_PAGE);
+    const html = items
+      .map((src, i) => `<img src="${src}" data-index="${start + i}" alt="갤러리 사진 ${start + i + 1}" loading="lazy">`)
+      .join('');
     if (animate) {
-      mainImg.style.transition = 'opacity 0.25s ease';
-      mainImg.style.opacity = '0';
+      stack.style.transition = 'opacity 0.25s ease';
+      stack.style.opacity = '0';
       setTimeout(() => {
-        mainImg.src = images[mainIndex];
-        mainImg.style.opacity = '1';
+        stack.innerHTML = html;
+        bindStackClicks();
+        stack.style.opacity = '1';
       }, 150);
     } else {
-      mainImg.src = images[mainIndex];
+      stack.innerHTML = html;
+      bindStackClicks();
     }
-    thumbsWrap.querySelectorAll('img').forEach((t, i) => t.classList.toggle('active', i === mainIndex));
-    shiftThumbStrip(mainIndex);
   }
-  setMain(0, false);
+  function bindStackClicks() {
+    stack.querySelectorAll('img').forEach((img) => {
+      img.addEventListener('click', () => openLightbox(Number(img.dataset.index)));
+    });
+  }
+  renderPage(false);
 
-  mainPrevBtn.addEventListener('click', () => setMain((mainIndex - 1 + images.length) % images.length, true));
-  mainNextBtn.addEventListener('click', () => setMain((mainIndex + 1) % images.length, true));
-  thumbsWrap.querySelectorAll('img').forEach((t) => {
-    t.addEventListener('click', () => setMain(Number(t.dataset.index), true));
-  });
-  mainImg.addEventListener('click', () => openLightbox(mainIndex));
+  prevBtn.addEventListener('click', () => { page = (page - 1 + pageCount) % pageCount; renderPage(true); });
+  nextBtn.addEventListener('click', () => { page = (page + 1) % pageCount; renderPage(true); });
 
   let current = 0;
   const lightbox = document.getElementById('lightbox');
@@ -418,6 +407,7 @@ async function copyText(text) {
   const rows = [
     transportGroup('셔틀버스', t.shuttle, 'transport-sub--plain'),
     transportGroup('시내버스', t.bus),
+    transportGroup('SRT&KTX', t.srtKtx),
   ].filter(Boolean);
   document.getElementById('transportList').innerHTML = rows.join('');
 })();
