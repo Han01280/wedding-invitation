@@ -79,50 +79,22 @@ async function copyText(text) {
       ? `<p class="hero-names-script script-font">${escapeHtml(groomEn)} &amp; ${escapeHtml(brideEn)}</p>`
       : `<p class="hero-names-script script-font">${escapeHtml(c.groomName)} &amp; ${escapeHtml(c.brideName)}</p>`;
     const playBtn = CONFIG.video && CONFIG.video.enabled ? '<button class="vintage-play" id="heroPlayBtn" aria-label="영상 재생">▶</button>' : '';
-    const frameSvg = '<svg class="frame-svg"><path fill="none" stroke="#fff"/></svg>';
     hero.innerHTML = `
-      <p class="hero-invited">Invited</p>
-      <div class="vintage-frame">
-        ${frameSvg}
-        <div class="vintage-frame__inner">
-          ${frameSvg}
-          <p class="hero-star">✳</p>
-          <p class="hero-label section__label">Invitation</p>
-          <div class="vintage-photo">
-            <img src="${c.mainImage}" alt="메인 사진">
-            ${playBtn}
-          </div>
-          <p class="hero-label section__label">Wedding Day</p>
-          ${cursiveNamesHtml}
-          <p class="hero-date-venue">${escapeHtml(c.dateText)}<br>${nl2br(c.venueShort)}</p>
-        </div>
-      </div>`;
+      <p class="hero-star">✳</p>
+      <p class="hero-label section__label">Invitation</p>
+      <div class="vintage-photo">
+        <img src="${c.mainImage}" alt="메인 사진">
+        ${playBtn}
+      </div>
+      <p class="hero-label section__label">Wedding Day</p>
+      ${cursiveNamesHtml}
+      <p class="hero-date-venue">${escapeHtml(c.dateText)}<br>${nl2br(c.venueShort)}</p>`;
     const heroPlayBtn = document.getElementById('heroPlayBtn');
     if (heroPlayBtn) {
       heroPlayBtn.addEventListener('click', () => {
         document.getElementById('videoSection').scrollIntoView({ behavior: 'smooth' });
       });
     }
-
-    // 네 모서리가 안쪽으로 오목하게 파인 곡선 프레임을 실제 렌더링 크기에 맞춰 그린다
-    function drawConcaveFrame(container, radius, strokeWidth) {
-      const svg = container.querySelector(':scope > .frame-svg');
-      const path = svg.querySelector('path');
-      path.setAttribute('stroke-width', strokeWidth);
-      function update() {
-        const w = container.clientWidth;
-        const h = container.clientHeight;
-        if (!w || !h) return;
-        const r = Math.min(radius, w / 2 - 1, h / 2 - 1);
-        const d = `M ${r} 0 L ${w - r} 0 A ${r} ${r} 0 0 0 ${w} ${r} L ${w} ${h - r} A ${r} ${r} 0 0 0 ${w - r} ${h} L ${r} ${h} A ${r} ${r} 0 0 0 0 ${h - r} L 0 ${r} A ${r} ${r} 0 0 0 ${r} 0 Z`;
-        path.setAttribute('d', d);
-      }
-      update();
-      if (window.ResizeObserver) new ResizeObserver(update).observe(container);
-      else window.addEventListener('resize', update);
-    }
-    drawConcaveFrame(document.querySelector('.vintage-frame'), 30, 3);
-    drawConcaveFrame(document.querySelector('.vintage-frame__inner'), 22, 3);
   } else if (style === 'arch') {
     hero.classList.add('hero--arch');
     hero.innerHTML = `

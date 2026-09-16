@@ -166,50 +166,35 @@ a { text-decoration: none; }
 .hero--arch .hero__info { color: #444; bottom: 20px; }
 .hero__info .venue { font-size: 13px; opacity: .85; margin-top: 4px; }
 
-/* ---- 히어로: 빈티지 액자 스타일 ---- */
-.hero--vintage {
-  --hero-bg: #efe9df;
-  background: var(--hero-bg);
-  padding: 60px 18px;
-}
-.hero-invited {
+/* ---- 상단 배너 ---- */
+.top-banner {
+  background: #2c2019;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
   font-family: 'EB Garamond', serif;
   font-style: italic;
   font-weight: 600;
   font-size: 13px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: #3a3a3a;
-  text-align: center;
-  margin-bottom: 22px;
 }
-.vintage-frame {
+
+/* ---- 히어로: 빈티지 액자 스타일 ---- */
+.hero--vintage {
+  --hero-bg: #efe9df;
   --vf-color: #b9ab8c;
-  position: relative;
-  padding: 16px;
-}
-.vintage-frame__inner {
-  position: relative;
-  padding: 44px 16px 42px;
+  background: var(--hero-bg);
+  padding: 40px 24px 48px;
   text-align: center;
 }
-.frame-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-  z-index: 0;
-}
-.vintage-frame > *:not(.frame-svg), .vintage-frame__inner > *:not(.frame-svg) { position: relative; z-index: 1; }
 .hero-star { color: var(--vf-color); font-size: 15px; margin-bottom: 10px; }
 .hero-label.section__label { margin-bottom: 16px; }
 .hero-names-script {
-  font-size: 40px;
+  font-size: 26px;
   color: #3a3a3a;
   margin: 4px 0 14px;
-  line-height: 1;
+  line-height: 1.3;
 }
 .hero-date-venue {
   font-family: 'SUIT Variable', 'Pretendard', sans-serif;
@@ -218,7 +203,7 @@ a { text-decoration: none; }
   color: #8a8072;
   letter-spacing: 0.3px;
 }
-.vintage-photo { position: relative; margin: 0 auto 24px; width: 82%; }
+.vintage-photo { position: relative; margin: 0 auto 28px; width: 58%; }
 .vintage-photo img { width: 100%; height: auto; }
 .vintage-play {
   position: absolute; top: 8px; right: 8px;
