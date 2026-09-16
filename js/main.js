@@ -81,6 +81,7 @@ async function copyText(text) {
     const playBtn = CONFIG.video && CONFIG.video.enabled ? '<button class="vintage-play" id="heroPlayBtn" aria-label="영상 재생">▶</button>' : '';
     const frameSvg = '<svg class="frame-svg"><path fill="none" stroke="#fff"/></svg>';
     hero.innerHTML = `
+      <p class="hero-invited">Invited</p>
       <div class="vintage-frame">
         ${frameSvg}
         <div class="vintage-frame__inner">
@@ -187,9 +188,9 @@ async function copyText(text) {
   function update() {
     const now = new Date();
     const diffDays = Math.ceil((weddingDate - now) / (1000 * 60 * 60 * 24));
-    if (diffDays > 0) ddayEl.textContent = `결혼식이 ${diffDays}일 남았습니다.`;
-    else if (diffDays === 0) ddayEl.textContent = '오늘, 두 사람이 하나가 됩니다.';
-    else ddayEl.textContent = '결혼식이 있었습니다.';
+    if (diffDays > 0) ddayEl.textContent = `D-${diffDays}`;
+    else if (diffDays === 0) ddayEl.textContent = 'D-DAY';
+    else ddayEl.textContent = `D+${Math.abs(diffDays)}`;
   }
   update();
   setInterval(update, 1000 * 60 * 30);
@@ -445,7 +446,10 @@ async function copyText(text) {
   document.querySelectorAll('.accordion__head').forEach((head) => {
     head.addEventListener('click', () => {
       const body = document.querySelector(head.dataset.target);
-      if (body) body.hidden = !body.hidden;
+      if (!body) return;
+      body.hidden = !body.hidden;
+      const icon = head.querySelector('.accordion__icon');
+      if (icon) icon.textContent = body.hidden ? '+' : '－';
     });
   });
   document.addEventListener('click', (e) => {
