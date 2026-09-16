@@ -123,20 +123,6 @@ a { text-decoration: none; }
 .hero--arch .hero__info { color: #444; bottom: 20px; }
 .hero__info .venue { font-size: 13px; opacity: .85; margin-top: 4px; }
 
-/* ---- 상단 배너 ---- */
-.top-banner {
-  background: #2c2019;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  font-family: 'EB Garamond', serif;
-  font-style: italic;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-
 /* ---- 히어로: 빈티지 액자 스타일 ---- */
 .hero--vintage {
   --hero-bg: #e7e7e7;
@@ -154,12 +140,6 @@ a { text-decoration: none; }
   letter-spacing: 0.5px;
   color: #301e15;
   text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.hero-cursive {
-  font-size: 34px;
-  color: #301e15;
-  line-height: 1.4;
   margin-bottom: 24px;
 }
 .hero-date-venue {
@@ -180,13 +160,13 @@ a { text-decoration: none; }
   display: flex; align-items: center; justify-content: center;
 }
 /* ---- 인사말 ---- */
-.greeting-label { font-size: 26px; color: #b08d6b; margin-bottom: 30px; }
+.greeting-label { font-size: 26px; color: #555; margin-bottom: 30px; }
 .greeting__quote {
   font-family: 'SUIT Variable', 'Pretendard', sans-serif;
   font-size: 14px;
   line-height: 2;
   color: #555;
-  margin-bottom: 56px;
+  margin-bottom: 112px;
 }
 .greeting__quote p { margin-bottom: 18px; }
 .greeting__quote p:last-child { margin-bottom: 0; }
@@ -207,7 +187,7 @@ a { text-decoration: none; }
   color: #fff;
   margin-bottom: 22px;
 }
-.calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 14px; margin-bottom: 30px; max-width: 300px; margin-left: auto; margin-right: auto; }
+.calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 14px; margin-bottom: 30px; max-width: 250px; margin-left: auto; margin-right: auto; }
 .calendar__grid .dow { color: #b3a68f; font-weight: 700; font-size: 13px; padding-bottom: 10px; }
 .calendar__grid .dow--sun { color: #b08d6b; }
 .calendar__grid .day { width: 34px; height: 34px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'SUIT Variable', 'Pretendard', sans-serif; }
@@ -345,13 +325,13 @@ a { text-decoration: none; }
 .toggle-btn {
   flex: 1; padding: 11px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; color: #888;
 }
-.toggle-btn.active { border-color: #b08d6b; background: #b08d6b; color: #fff; }
+.toggle-btn.active { border-color: #301e15; background: #301e15; color: #fff; }
 .rsvp-field input[type="text"], .rsvp-field input[type="number"], .rsvp-field input[type="tel"] {
   width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;
 }
 .consent-row { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #888; text-align: left; margin-bottom: 24px; }
 .consent-row input { margin-top: 3px; }
-.btn-solid { width: 100%; padding: 14px; background: #b08d6b; color: #fff; border-radius: 8px; font-size: 14px; font-weight: 700; }
+.btn-solid { width: 100%; padding: 14px; background: #301e15; color: #fff; border-radius: 8px; font-size: 14px; font-weight: 700; }
 .btn-solid:disabled { background: #ccc; }
 
 /* ---- 공유 ---- */

@@ -69,7 +69,6 @@ async function copyText(text) {
     hero.innerHTML = `
       <p class="hero-star">✳</p>
       <p class="hero-label">With Love</p>
-      <p class="hero-cursive script-font">invitation</p>
       <div class="vintage-photo">
         <img src="${c.mainImage}" alt="메인 사진">
         ${playBtn}
