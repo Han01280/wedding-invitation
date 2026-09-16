@@ -11,14 +11,6 @@
   if (screen) screen.hidden = false;
 })();
 
-// ============ 인트로: 편지봉투 오픈 모션 ============
-(function initEnvelopeIntro() {
-  const envelope = document.getElementById('envelopeIntro');
-  if (!envelope) return;
-  if (CONFIG.comingSoon) { envelope.hidden = true; return; }
-  setTimeout(() => { envelope.hidden = true; }, 3200);
-})();
-
 // ============ 확대(줌) 방지 ============
 (function preventZoom() {
   document.addEventListener('gesturestart', (e) => e.preventDefault());

@@ -3,16 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,500;1,600&family=Pinyon+Script&family=Caveat:wght@500;600&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; word-break: keep-all; }
-html { -webkit-text-size-adjust: 100%; touch-action: pan-x pan-y; }
+html { -webkit-text-size-adjust: 100%; touch-action: pan-x pan-y; background: #fff; }
 [hidden] { display: none !important; }
 body {
   font-family: 'SUIT Variable', 'Pretendard', sans-serif;
-  background: #301e15;
   color: #333;
   -webkit-font-smoothing: antialiased;
   display: flex;
   justify-content: center;
-  padding: 0 20px;
   touch-action: pan-x pan-y;
 }
 @media (min-width: 769px) {
@@ -21,58 +19,6 @@ body {
 img { max-width: 100%; display: block; -webkit-user-select: none; user-select: none; }
 button, a { background: none; border: none; cursor: pointer; font-family: inherit; color: inherit; }
 a { text-decoration: none; }
-
-/* ---- 인트로: 편지봉투 오픈 모션 ---- */
-.envelope-intro {
-  position: fixed; inset: 0; z-index: 9999;
-  background: #efe9df;
-  display: flex; align-items: center; justify-content: center;
-  animation: envelopeFadeOut 0.7s ease 2.4s forwards;
-}
-.envelope-intro[hidden] { display: none !important; }
-.envelope { position: relative; width: 230px; height: 156px; perspective: 700px; }
-.envelope__body {
-  position: absolute; inset: 0;
-  background: #f7f1e4;
-  border-radius: 3px;
-  box-shadow: 0 14px 34px rgba(0,0,0,0.14);
-}
-.envelope__letter {
-  position: absolute;
-  left: 16px; right: 16px; top: 12px;
-  height: 106px;
-  background: #fffdf8;
-  border: 1px solid #e9decb;
-  border-radius: 2px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(4px);
-  opacity: 0;
-  z-index: 1;
-  animation: letterSlide 0.7s ease 1.0s forwards;
-}
-.envelope__pocket {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 68%;
-  background: #f0e6d2;
-  border-radius: 0 0 3px 3px;
-  z-index: 2;
-}
-.envelope__flap {
-  position: absolute; left: 0; right: 0; top: 0; height: 58%;
-  background: #e8dcc2;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top center;
-  backface-visibility: hidden;
-  z-index: 3;
-  animation: flapOpen 0.8s ease 0.3s forwards;
-}
-.envelope__heart {
-  position: absolute; left: 50%; top: 38%; transform: translate(-50%, -50%);
-  font-size: 18px; color: #b08d6b; z-index: 4;
-  animation: envelopeFadeOut 0.4s ease 0.3s forwards;
-}
-@keyframes flapOpen { to { transform: rotateX(180deg); } }
-@keyframes letterSlide { to { transform: translateY(-50px); opacity: 1; } }
-@keyframes envelopeFadeOut { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 
 .coming-soon {
   width: 100%;
@@ -243,26 +189,30 @@ a { text-decoration: none; }
 
 /* ---- 캘린더 (다크 테마) ---- */
 .section--dark { background: #301e15; color: #e9dfcf; }
-.ribbon-divider {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 64px;
-  background: #e7e7e7;
-}
-.ribbon-divider--down { clip-path: polygon(0 0, 100% 0, 50% 100%); margin-bottom: -64px; }
-.ribbon-divider--up { clip-path: polygon(0 100%, 100% 100%, 50% 0); margin-top: -64px; }
 .section__label--light.section__label { color: #f3ead9; }
 .calendar-photo { width: 100%; max-width: 220px; margin: 0 auto 30px; border-radius: 2px; display: block; }
-.calendar__month--dark.calendar__month { font-size: 24px; font-weight: 500; color: #f3ead9; margin-bottom: 22px; }
-.calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 15px; margin-bottom: 30px; max-width: 300px; margin-left: auto; margin-right: auto; }
+.calendar__month--dark.calendar__month {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 14px; margin-bottom: 30px; max-width: 300px; margin-left: auto; margin-right: auto; }
 .calendar__grid .dow { color: #b3a68f; font-weight: 700; font-size: 13px; padding-bottom: 10px; }
 .calendar__grid .dow--sun { color: #b08d6b; }
-.calendar__grid .day { width: 34px; height: 34px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #e9dfcf; }
+.calendar__grid .day { width: 34px; height: 34px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'SUIT Variable', 'Pretendard', sans-serif; }
 .calendar__grid .day.empty { visibility: hidden; }
-.calendar__grid .day.dday { background: #b08d6b; color: #fff; border-radius: 50%; font-weight: 700; }
-.calendar-full-date { font-size: 14px; color: #b3a68f; margin-bottom: 22px; }
-.calendar__dday--light.calendar__dday { font-family: 'SUIT Variable', 'Pretendard', sans-serif; font-size: 15px; font-weight: 700; color: #f3ead9; }
+.calendar__grid .day.dday { background: #fff; color: #301e15; border-radius: 50%; font-weight: 600; }
+.calendar-full-date {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 22px;
+}
+.calendar__dday--light.calendar__dday { font-family: 'SUIT Variable', 'Pretendard', sans-serif; font-size: 14px; font-weight: 700; color: #fff; }
 
 /* ---- 영상 ---- */
 .video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: #000; }
@@ -270,9 +220,10 @@ a { text-decoration: none; }
 
 /* ---- 갤러리 (세로 스택 + 페이지 화살표) ---- */
 .gallery-title.section__label {
-  font-family: 'Pinyon Script', cursive;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: normal;
   color: #181818;
 }
@@ -296,6 +247,7 @@ a { text-decoration: none; }
   color: #555;
   line-height: 1.6;
   margin-top: 28px;
+  transform: rotate(-3deg);
 }
 
 /* ---- 오시는 길 ---- */
@@ -374,7 +326,7 @@ a { text-decoration: none; }
 
 /* ---- BGM 토글 ---- */
 .bgm-toggle {
-  position: fixed; top: 16px; right: 36px; z-index: 400;
+  position: fixed; top: 16px; right: 16px; z-index: 400;
   width: 44px; height: 44px; border-radius: 50%;
   background: rgba(255,255,255,0.9); box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   display: flex; align-items: center; justify-content: center; gap: 2px;
