@@ -45,24 +45,11 @@ a { text-decoration: none; }
 .card {
   width: 100%;
   min-height: 100vh;
-  background: #e7e7e7;
+  background: #eeeeee;
   box-shadow: 0 0 24px rgba(0,0,0,0.06);
   position: relative;
   overflow-x: hidden;
 }
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('images/paper-texture.png');
-  background-repeat: repeat;
-  background-size: 220px 220px;
-  mix-blend-mode: multiply;
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 0;
-}
-.card > * { position: relative; z-index: 1; }
 
 .script-font { font-family: 'Pinyon Script', 'Pretendard', cursive; }
 .serif-font { font-family: 'EB Garamond', 'Pretendard', serif; font-style: italic; }
