@@ -137,7 +137,7 @@ a { text-decoration: none; }
   padding: 40px 24px 48px;
   text-align: center;
 }
-.hero-star { width: 22px; height: auto; margin: 0 auto 10px; display: block; }
+.hero-star { width: 20px; height: auto; margin: 0 auto 8px; display: block; }
 .hero-label {
   font-family: 'EB Garamond', 'Pretendard', serif;
   font-style: italic;
@@ -189,7 +189,7 @@ a { text-decoration: none; }
   color: #555;
   margin-bottom: 112px;
 }
-.greeting__quote p { margin-bottom: 42px; }
+.greeting__quote p { margin-bottom: 38px; }
 .greeting__quote p:last-child { margin-bottom: 0; }
 .greeting__parents { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 40px; }
 .greeting__parents p { margin-bottom: 4px; }
@@ -201,7 +201,7 @@ a { text-decoration: none; }
 .section--location { padding-top: 110px; }
 .section--location .section__label { margin-bottom: 40px; }
 .section--invitation { padding-top: 110px; }
-.section--invitation .section__label { margin-bottom: 88px; }
+.section--invitation .section__label { margin-bottom: 84px; }
 .section__label--light.section__label { color: #fff; }
 .calendar-photo { width: 100%; max-width: 220px; margin: 24px auto 42px; border-radius: 2px; display: block; }
 .calendar__month--dark.calendar__month {
@@ -274,13 +274,13 @@ a { text-decoration: none; }
 }
 
 /* ---- 오시는 길 ---- */
-.map-frame { width: 100%; height: 220px; border-radius: 0; overflow: hidden; margin-bottom: 14px; background: #eee; border: 1px solid rgba(0,0,0,0.2); }
+.map-frame { width: 100%; height: 220px; border-radius: 0; overflow: hidden; margin-bottom: 0; background: #eee; border: 1px solid rgba(0,0,0,0.2); border-bottom: none; }
 .map-address-row {
   position: relative;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 0;
   padding: 14px 44px;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 .map-address {
   font-family: 'Pretendard', sans-serif;
@@ -314,7 +314,7 @@ a { text-decoration: none; }
 .transport-list {
   text-align: left;
   font-family: 'Pretendard', sans-serif;
-  font-size: 15px; line-height: 1.7; color: #6b6b6b;
+  font-size: 14px; line-height: 1.7; color: #6b6b6b;
   margin-bottom: 48px;
 }
 .section--gift { padding-top: 110px; }
@@ -341,15 +341,26 @@ a { text-decoration: none; }
 .transport-sublist li.transport-note { color: #6b6b6b; font-size: 13px; }
 .transport-sublist li.transport-note::before { content: '※'; }
 .transport-steplist { list-style: none; margin-bottom: 10px; padding-left: 8px; }
-.transport-steplist li.transport-step { margin-bottom: 6px; font-size: 15px; }
+.transport-steplist li.transport-step { margin-bottom: 6px; font-size: 14px; }
 .transport-steplist li.transport-step:last-child { margin-bottom: 0; }
 .transport-num { margin-right: 2px; }
-.transport-sub { color: #6b6b6b; font-size: 15px; margin-top: 3px; }
+.transport-sub { color: #6b6b6b; font-size: 14px; margin-top: 3px; }
 .transport-sub::before { content: '- '; color: #999; }
 .transport-sub--plain::before { content: none; }
 
 /* ---- 예식홀 위치안내 / 식사안내 ---- */
-.venue-guide-img { width: 100%; border-radius: 0; display: block; margin-bottom: 48px; }
+.venue-guide-img {
+  width: calc(100% + 60px);
+  margin-left: -30px;
+  margin-right: -30px;
+  max-width: none;
+  border-radius: 0;
+  display: block;
+  margin-bottom: 48px;
+}
+@media (max-width: 360px) {
+  .venue-guide-img { width: calc(100% + 40px); margin-left: -20px; margin-right: -20px; }
+}
 .section--information { padding-top: 110px; }
 .section--information .section__label { margin-bottom: 40px; }
 #informationList { margin-bottom: 48px; }
