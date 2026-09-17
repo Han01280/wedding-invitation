@@ -200,7 +200,7 @@ a { text-decoration: none; }
   color: rgba(255,255,255,0.7);
   margin-bottom: 22px;
 }
-.calendar__dday--light.calendar__dday { font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 48px; }
+.calendar__dday--light.calendar__dday { font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 48px; }
 
 /* ---- 영상 ---- */
 .video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: #000; }
