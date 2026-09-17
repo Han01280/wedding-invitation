@@ -51,8 +51,8 @@ a { text-decoration: none; }
   overflow-x: hidden;
 }
 
-.script-font { font-family: 'Pinyon Script', cursive; }
-.serif-font { font-family: 'EB Garamond', serif; font-style: italic; }
+.script-font { font-family: 'Pinyon Script', 'Pretendard', cursive; }
+.serif-font { font-family: 'EB Garamond', 'Pretendard', serif; font-style: italic; }
 
 /* ---- 스크롤 페이드업 ---- */
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
@@ -61,7 +61,7 @@ a { text-decoration: none; }
 /* ---- 섹션 공통 ---- */
 .section { padding: 64px 30px; text-align: center; }
 .section__label {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Pretendard', serif;
   font-style: italic;
   font-weight: 400;
   font-size: 20px;
@@ -132,7 +132,7 @@ a { text-decoration: none; }
 }
 .hero-star { color: var(--vf-color); font-size: 15px; margin-bottom: 10px; }
 .hero-label {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Pretendard', serif;
   font-style: italic;
   font-weight: 400;
   font-size: 15px;
@@ -179,7 +179,7 @@ a { text-decoration: none; }
 .section__label--light.section__label { color: #f3ead9; }
 .calendar-photo { width: 100%; max-width: 220px; margin: 0 auto 30px; border-radius: 2px; display: block; }
 .calendar__month--dark.calendar__month {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Pretendard', serif;
   font-style: italic;
   font-size: 24px;
   font-weight: 400;
@@ -193,7 +193,7 @@ a { text-decoration: none; }
 .calendar__grid .day.empty { visibility: hidden; }
 .calendar__grid .day.dday { background: #fff; color: #301e15; border-radius: 50%; font-weight: 600; }
 .calendar-full-date {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Pretendard', serif;
   font-style: italic;
   font-size: 14px;
   color: rgba(255,255,255,0.7);
@@ -207,7 +207,7 @@ a { text-decoration: none; }
 
 /* ---- 갤러리 (세로 스택 + 페이지 화살표) ---- */
 .gallery-title.section__label {
-  font-family: 'EB Garamond', serif;
+  font-family: 'EB Garamond', 'Pretendard', serif;
   font-style: italic;
   font-weight: 400;
   font-size: 20px;
