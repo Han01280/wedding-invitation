@@ -196,34 +196,24 @@ async function copyText(text) {
   const pageCount = Math.ceil(images.length / PER_PAGE);
   let page = 0;
 
-  function renderPage(animate) {
+  function renderPage() {
     const start = page * PER_PAGE;
     const items = images.slice(start, start + PER_PAGE);
     const html = items
       .map((src, i) => `<img src="${src}" data-index="${start + i}" alt="갤러리 사진 ${start + i + 1}" loading="lazy">`)
       .join('');
-    if (animate) {
-      stack.style.transition = 'opacity 0.25s ease';
-      stack.style.opacity = '0';
-      setTimeout(() => {
-        stack.innerHTML = html;
-        bindStackClicks();
-        stack.style.opacity = '1';
-      }, 150);
-    } else {
-      stack.innerHTML = html;
-      bindStackClicks();
-    }
+    stack.innerHTML = html;
+    bindStackClicks();
   }
   function bindStackClicks() {
     stack.querySelectorAll('img').forEach((img) => {
       img.addEventListener('click', () => openLightbox(Number(img.dataset.index)));
     });
   }
-  renderPage(false);
+  renderPage();
 
-  prevBtn.addEventListener('click', () => { page = (page - 1 + pageCount) % pageCount; renderPage(true); });
-  nextBtn.addEventListener('click', () => { page = (page + 1) % pageCount; renderPage(true); });
+  prevBtn.addEventListener('click', () => { page = (page - 1 + pageCount) % pageCount; renderPage(); });
+  nextBtn.addEventListener('click', () => { page = (page + 1) % pageCount; renderPage(); });
 
   let current = 0;
   const lightbox = document.getElementById('lightbox');
@@ -337,7 +327,7 @@ async function copyText(text) {
 (function renderMap() {
   const m = CONFIG.map;
   document.getElementById('venueName').innerHTML =
-    `${escapeHtml(m.venueName || m.name)}${m.hallName ? `<br>${escapeHtml(m.hallName)}` : ''}`;
+    `${escapeHtml(m.venueName || m.name)}${m.hallName ? `<span class="venue-hall-line">${escapeHtml(m.hallName)}</span>` : ''}`;
   document.getElementById('venueAddress').textContent = m.address;
   const addressCopyBtn = document.getElementById('addressCopyBtn');
   if (addressCopyBtn) {

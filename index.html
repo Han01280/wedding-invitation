@@ -49,9 +49,9 @@
     <p class="section__label gallery-title fade-up">Wedding Gallery</p>
     <div class="fade-up">
       <div class="gallery-stack-wrap">
-        <button id="galleryPrev" class="gallery-stack-arrow gallery-stack-arrow--prev" aria-label="이전 사진">‹</button>
+        <button id="galleryPrev" class="gallery-stack-arrow gallery-stack-arrow--prev" aria-label="이전 사진"><svg width="6" height="10" viewBox="0 0 10 16" fill="none"><path d="M8 2L2 8L8 14" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div id="galleryStack" class="gallery-stack"></div>
-        <button id="galleryNext" class="gallery-stack-arrow gallery-stack-arrow--next" aria-label="다음 사진">›</button>
+        <button id="galleryNext" class="gallery-stack-arrow gallery-stack-arrow--next" aria-label="다음 사진"><svg width="6" height="10" viewBox="0 0 10 16" fill="none"><path d="M2 2L8 8L2 14" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
       <p class="gallery-quote">It was not only a moment we shared,<br>but a love held forever.</p>
     </div>
@@ -69,7 +69,7 @@
   <section class="section section--dark">
     <p class="section__label section__label--light fade-up">Date</p>
     <div class="fade-up">
-      <img src="images/CAKE.jpg" alt="캘린더 사진" class="calendar-photo">
+      <img src="images/CAKE2.jpg" alt="캘린더 사진" class="calendar-photo">
     </div>
     <div class="fade-up">
       <p id="calendarMonth" class="calendar__month calendar__month--dark serif-font"></p>
@@ -89,7 +89,9 @@
       <div id="mapEmbed" class="map-frame" hidden></div>
       <div class="map-address-row">
         <p id="venueAddress" class="map-address"></p>
-        <button type="button" class="btn-ghost-sm" id="addressCopyBtn">복사</button>
+        <button type="button" class="address-copy-btn" id="addressCopyBtn" aria-label="주소 복사">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        </button>
       </div>
       <div class="map-buttons">
         <button type="button" class="map-btn" id="naverMapBtn"><img class="map-btn__icon" src="images/icon-navermap.png" alt="" aria-hidden="true">네이버지도</button>
@@ -104,7 +106,7 @@
   <section class="section">
     <div class="fade-up">
       <p class="section__label">예식홀 위치안내</p>
-      <img src="images/venue-guide.png" alt="예식홀 위치 안내" class="venue-guide-img">
+      <img src="images/홀위치안내도.png" alt="예식홀 위치 안내" class="venue-guide-img">
     </div>
   </section>
 

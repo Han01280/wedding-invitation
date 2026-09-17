@@ -137,7 +137,7 @@ a { text-decoration: none; }
   padding: 40px 24px 48px;
   text-align: center;
 }
-.hero-star { width: 26px; height: auto; margin: 0 auto 10px; display: block; }
+.hero-star { width: 22px; height: auto; margin: 0 auto 10px; display: block; }
 .hero-label {
   font-family: 'EB Garamond', 'Pretendard', serif;
   font-style: italic;
@@ -165,7 +165,7 @@ a { text-decoration: none; }
   font-family: 'Pretendard', sans-serif;
   font-size: 15px;
   color: #6b6b6b;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 .hero-venue-line {
   font-family: 'Pretendard', sans-serif;
@@ -189,7 +189,7 @@ a { text-decoration: none; }
   color: #555;
   margin-bottom: 112px;
 }
-.greeting__quote p { margin-bottom: 18px; }
+.greeting__quote p { margin-bottom: 42px; }
 .greeting__quote p:last-child { margin-bottom: 0; }
 .greeting__parents { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 40px; }
 .greeting__parents p { margin-bottom: 4px; }
@@ -201,7 +201,7 @@ a { text-decoration: none; }
 .section--location { padding-top: 110px; }
 .section--location .section__label { margin-bottom: 40px; }
 .section--invitation { padding-top: 110px; }
-.section--invitation .section__label { margin-bottom: 40px; }
+.section--invitation .section__label { margin-bottom: 88px; }
 .section__label--light.section__label { color: #fff; }
 .calendar-photo { width: 100%; max-width: 220px; margin: 24px auto 42px; border-radius: 2px; display: block; }
 .calendar__month--dark.calendar__month {
@@ -246,11 +246,19 @@ a { text-decoration: none; }
 .gallery-stack img {
   width: 100%; aspect-ratio: 3/2; object-fit: cover;
   cursor: pointer; user-select: none; -webkit-user-drag: none;
+  opacity: 0; transform: translateX(-20px);
+}
+.gallery-stack img:nth-child(1) { animation: galleryPhotoIn 0.7s ease 0s 1 normal forwards; }
+.gallery-stack img:nth-child(3) { animation: galleryPhotoIn 0.7s ease 0.25s 1 normal forwards; }
+.gallery-stack img:nth-child(2) { animation: galleryPhotoIn 0.7s ease 0.5s 1 normal forwards; }
+@keyframes galleryPhotoIn {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 .gallery-stack-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
-  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-  font-size: 26px; font-weight: 300; color: #b3ab9c; z-index: 2;
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  color: #99978f; z-index: 2;
 }
 .gallery-stack-arrow--prev { right: 100%; margin-right: 6px; }
 .gallery-stack-arrow--next { left: 100%; margin-left: 6px; }
@@ -268,10 +276,10 @@ a { text-decoration: none; }
 /* ---- 오시는 길 ---- */
 .map-frame { width: 100%; height: 220px; border-radius: 0; overflow: hidden; margin-bottom: 14px; background: #eee; border: 1px solid rgba(0,0,0,0.2); }
 .map-address-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 14px 44px;
   margin-bottom: 18px;
 }
 .map-address {
@@ -279,7 +287,22 @@ a { text-decoration: none; }
   font-size: 14px;
   color: #111;
   letter-spacing: -0.25px;
+  text-align: center;
 }
+.address-copy-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  flex-shrink: 0;
+}
+.venue-hall-line { display: block; margin-top: 4px; }
 .map-buttons { display: flex; gap: 8px; margin-bottom: 24px; }
 .map-btn {
   flex: 1; padding: 11px 0; border: 1px solid #ddd; border-radius: 8px;
@@ -311,18 +334,18 @@ a { text-decoration: none; }
   line-height: 1.3;
   margin-bottom: 10px;
 }
-.transport-sublist { list-style: none; padding-left: 16px; }
+.transport-sublist { list-style: none; padding-left: 8px; }
 .transport-sublist li { position: relative; padding-left: 14px; margin-bottom: 6px; }
 .transport-sublist li:last-child { margin-bottom: 0; }
 .transport-sublist li::before { content: '-'; position: absolute; left: 0; color: #999; }
 .transport-sublist li.transport-note { color: #6b6b6b; font-size: 13px; }
 .transport-sublist li.transport-note::before { content: '※'; }
-.transport-steplist { list-style: none; margin-bottom: 10px; padding-left: 16px; }
+.transport-steplist { list-style: none; margin-bottom: 10px; padding-left: 8px; }
 .transport-steplist li.transport-step { margin-bottom: 6px; font-size: 15px; }
 .transport-steplist li.transport-step:last-child { margin-bottom: 0; }
 .transport-num { margin-right: 2px; }
-.transport-sub { padding-left: 20px; color: #6b6b6b; font-size: 15px; margin-top: 3px; position: relative; }
-.transport-sub::before { content: '-'; position: absolute; left: 6px; color: #999; }
+.transport-sub { color: #6b6b6b; font-size: 15px; margin-top: 3px; }
+.transport-sub::before { content: '- '; color: #999; }
 .transport-sub--plain::before { content: none; }
 
 /* ---- 예식홀 위치안내 / 식사안내 ---- */
