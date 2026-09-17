@@ -141,14 +141,30 @@ a { text-decoration: none; }
   text-transform: uppercase;
   margin-bottom: 24px;
 }
-.hero-date-venue {
+.hero-wedding-day {
   font-family: 'Pretendard', sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #301e15;
-  letter-spacing: -0.5px;
+  font-size: 10px;
+  color: #6b6b6b;
   margin-top: 26px;
+  margin-bottom: 6px;
+}
+.hero-names-script {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 18px;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+.hero-date-line {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 10px;
+  color: #6b6b6b;
+  margin-bottom: 4px;
+}
+.hero-venue-line {
+  font-family: 'Pretendard', sans-serif;
+  font-style: italic;
+  font-size: 10px;
+  color: #6b6b6b;
 }
 .vintage-photo { position: relative; margin: 0 auto 28px; width: 58%; }
 .vintage-photo img { width: 100%; height: auto; }
@@ -163,7 +179,7 @@ a { text-decoration: none; }
 .greeting__quote {
   font-family: 'Pretendard', sans-serif;
   font-size: 14px;
-  line-height: 2;
+  line-height: 1.7;
   color: #555;
   margin-bottom: 112px;
 }
@@ -291,6 +307,19 @@ a { text-decoration: none; }
 .transport-sub::before { content: '-'; position: absolute; left: 6px; color: #999; }
 .transport-sub--plain::before { content: none; }
 
+/* ---- 예식홀 위치안내 / 식사안내 ---- */
+.venue-guide-img { width: 100%; border-radius: 0; display: block; }
+.info-block { margin-bottom: 26px; }
+.info-block:last-child { margin-bottom: 0; }
+.info-block__title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700; font-size: 14px; color: #1a1a1a; margin-bottom: 8px;
+}
+.info-block__content {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 14px; color: #7f7d77; letter-spacing: -0.25px;
+  line-height: 1.8; white-space: pre-line;
+}
 
 /* ---- 계좌 아코디언 ---- */
 .gift__desc {

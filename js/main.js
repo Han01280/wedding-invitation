@@ -31,6 +31,17 @@ function escapeHtml(str) {
 function nl2br(str) {
   return escapeHtml(str).replace(/\n/g, '<br>');
 }
+function formatDotDate(isoStr) {
+  const d = new Date(isoStr);
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  const hour24 = d.getHours();
+  const ampm = hour24 < 12 ? '오전' : '오후';
+  let hour12 = hour24 % 12;
+  if (hour12 === 0) hour12 = 12;
+  return `${yyyy}.${mm}.${dd} ${ampm} ${hour12}시`;
+}
 
 let toastTimer = null;
 function showToast(message) {
@@ -66,6 +77,8 @@ async function copyText(text) {
   if (style === 'vintage') {
     hero.classList.add('hero--vintage');
     const playBtn = CONFIG.video && CONFIG.video.enabled ? '<button class="vintage-play" id="heroPlayBtn" aria-label="영상 재생">▶</button>' : '';
+    const groomEn = (c.groomNameEn || '').replace(/\s+/g, '').toLowerCase();
+    const brideEn = (c.brideNameEn || '').replace(/\s+/g, '').toLowerCase();
     hero.innerHTML = `
       <p class="hero-star">✳</p>
       <p class="hero-label">With Love</p>
@@ -73,7 +86,10 @@ async function copyText(text) {
         <img src="${c.mainImage}" alt="메인 사진">
         ${playBtn}
       </div>
-      <p class="hero-date-venue">${nl2br(c.venueShort)}<br>${escapeHtml(c.dateText)}</p>`;
+      <p class="hero-wedding-day">WEDDING DAY</p>
+      <p class="hero-names-script">${escapeHtml(groomEn)} &amp; ${escapeHtml(brideEn)}</p>
+      <p class="hero-date-line">${formatDotDate(CONFIG.calendar.date)}</p>
+      <p class="hero-venue-line">${escapeHtml(CONFIG.map.shortLine)}</p>`;
     const heroPlayBtn = document.getElementById('heroPlayBtn');
     if (heroPlayBtn) {
       heroPlayBtn.addEventListener('click', () => {
@@ -144,7 +160,9 @@ async function copyText(text) {
 
   function update() {
     const now = new Date();
-    const diffDays = Math.ceil((weddingDate - now) / (1000 * 60 * 60 * 24));
+    const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const weddingMidnight = new Date(weddingDate.getFullYear(), weddingDate.getMonth(), weddingDate.getDate());
+    const diffDays = Math.round((weddingMidnight - todayMidnight) / (1000 * 60 * 60 * 24));
     if (diffDays > 0) ddayEl.textContent = `D-${diffDays}`;
     else if (diffDays === 0) ddayEl.textContent = 'D-DAY';
     else ddayEl.textContent = `D+${Math.abs(diffDays)}`;
@@ -371,6 +389,19 @@ async function copyText(text) {
     transportGroup('SRT&KTX', t.srtKtx),
   ].filter(Boolean);
   document.getElementById('transportList').innerHTML = rows.join('');
+})();
+
+// ============ 7. 식사안내 ============
+(function renderInformation() {
+  const list = CONFIG.information || [];
+  const section = document.getElementById('informationSection');
+  if (list.length === 0) { section.hidden = true; return; }
+  document.getElementById('informationList').innerHTML = list
+    .map((item) => `<div class="info-block">
+      ${item.title ? `<p class="info-block__title">${escapeHtml(item.title)}</p>` : ''}
+      <p class="info-block__content">${nl2br(item.content)}</p>
+    </div>`)
+    .join('');
 })();
 
 // ============ 8. 계좌 아코디언 ============
