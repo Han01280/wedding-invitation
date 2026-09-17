@@ -260,7 +260,10 @@ a { text-decoration: none; }
   text-align: left;
   font-family: 'Pretendard', sans-serif;
   font-size: 14px; line-height: 1.7; color: #1a1a1a;
+  margin-bottom: 48px;
 }
+.section--gift { padding-top: 110px; }
+#rsvpSection { padding-top: 110px; }
 .transport-group { margin-bottom: 20px; }
 .transport-group:last-child { margin-bottom: 0; }
 .transport-group b {
@@ -295,6 +298,7 @@ a { text-decoration: none; }
   font-size: 14px; color: #7f7d77; letter-spacing: -0.25px;
   line-height: 1.8; margin-bottom: 40px;
 }
+.accordion { margin-bottom: 48px; }
 .accordion__head {
   width: 100%; padding: 15px 18px; background: #faf9f7; border-radius: 10px;
   font-size: 14px; font-weight: 700; display: flex; justify-content: space-between; margin-bottom: 8px;
