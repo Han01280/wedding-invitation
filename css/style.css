@@ -178,14 +178,14 @@ a { text-decoration: none; }
 .section--dark { background: #301e15; color: #e9dfcf; padding-top: 110px; }
 .section--location { padding-top: 110px; }
 .section__label--light.section__label { color: #fff; }
-.calendar-photo { width: 100%; max-width: 220px; margin: 24px auto 54px; border-radius: 2px; display: block; }
+.calendar-photo { width: 100%; max-width: 220px; margin: 24px auto 42px; border-radius: 2px; display: block; }
 .calendar__month--dark.calendar__month {
   font-family: 'EB Garamond', 'Pretendard', serif;
   font-style: italic;
   font-size: 19px;
   font-weight: 400;
   color: #fff;
-  margin-bottom: 46px;
+  margin-bottom: 34px;
 }
 .calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 14px; margin-bottom: 30px; max-width: 250px; margin-left: auto; margin-right: auto; }
 .calendar__grid .dow { color: #b3a68f; font-weight: 700; font-size: 13px; padding-bottom: 10px; }
