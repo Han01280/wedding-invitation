@@ -36,11 +36,13 @@ function formatDotDate(isoStr) {
   const yyyy = d.getFullYear();
   const mm = String(d.getMonth() + 1).padStart(2, '0');
   const dd = String(d.getDate()).padStart(2, '0');
+  const dows = ['일', '월', '화', '수', '목', '금', '토'];
+  const dow = dows[d.getDay()];
   const hour24 = d.getHours();
   const ampm = hour24 < 12 ? '오전' : '오후';
   let hour12 = hour24 % 12;
   if (hour12 === 0) hour12 = 12;
-  return `${yyyy}.${mm}.${dd} ${ampm} ${hour12}시`;
+  return `${yyyy}.${mm}.${dd}(${dow}) ${ampm} ${hour12}시`;
 }
 
 let toastTimer = null;
@@ -80,7 +82,7 @@ async function copyText(text) {
     const groomEn = (c.groomNameEn || '').replace(/\s+/g, '').toLowerCase();
     const brideEn = (c.brideNameEn || '').replace(/\s+/g, '').toLowerCase();
     hero.innerHTML = `
-      <p class="hero-star">✳&#xFE0E;</p>
+      <img src="images/상단아이콘.svg" alt="" class="hero-star">
       <p class="hero-label">With Love</p>
       <div class="vintage-photo">
         <img src="${c.mainImage}" alt="메인 사진">
@@ -334,8 +336,16 @@ async function copyText(text) {
 // ============ 6. 오시는 길 ============
 (function renderMap() {
   const m = CONFIG.map;
-  document.getElementById('venueName').textContent = m.venueName || m.name;
+  document.getElementById('venueName').innerHTML =
+    `${escapeHtml(m.venueName || m.name)}${m.hallName ? `<br>${escapeHtml(m.hallName)}` : ''}`;
   document.getElementById('venueAddress').textContent = m.address;
+  const addressCopyBtn = document.getElementById('addressCopyBtn');
+  if (addressCopyBtn) {
+    addressCopyBtn.addEventListener('click', () => {
+      copyText(m.address);
+      showToast('주소를 복사했습니다');
+    });
+  }
 
   if (!CONFIG.comingSoon && CONFIG.kakao && CONFIG.kakao.appKey) {
     const mapEl = document.getElementById('mapEmbed');

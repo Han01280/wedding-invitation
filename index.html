@@ -87,7 +87,10 @@
     </div>
     <div class="fade-up">
       <div id="mapEmbed" class="map-frame" hidden></div>
-      <p id="venueAddress" class="map-address"></p>
+      <div class="map-address-row">
+        <p id="venueAddress" class="map-address"></p>
+        <button type="button" class="btn-ghost-sm" id="addressCopyBtn">복사</button>
+      </div>
       <div class="map-buttons">
         <button type="button" class="map-btn" id="naverMapBtn"><img class="map-btn__icon" src="images/icon-navermap.png" alt="" aria-hidden="true">네이버지도</button>
         <button type="button" class="map-btn" id="kakaoMapBtn"><img class="map-btn__icon" src="images/icon-kakaomap.png" alt="" aria-hidden="true">카카오맵</button>
@@ -179,7 +182,6 @@
         <button id="copyLinkBtn" class="btn-outline">공유하기 (링크 복사)</button>
         <button id="kakaoShareBtn" class="btn-kakao" hidden>카카오톡 공유하기</button>
       </div>
-      <p style="font-size:12px;color:#999;margin-top:16px;">QR 코드로 공유하고 싶다면 <a href="qr.html" style="color:#b08d6b;text-decoration:underline;">QR 코드 생성 도구</a>를 이용해 보세요.</p>
     </div>
   </section>
 
