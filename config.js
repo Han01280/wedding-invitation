@@ -27,7 +27,7 @@ const CONFIG = {
 
   // 커버(인트로)
   intro: {
-    mainImage: 'images/레이스프레임.png',
+    mainImage: 'images/메인사진.png',
     heroStyle: 'vintage', // 'vintage'(계단형 액자+필름사진) | 'arch'(아치형) | 'full'(풀스크린)
     groomName: '이병한',
     brideName: '노규민',

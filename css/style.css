@@ -303,7 +303,7 @@ a { text-decoration: none; }
   flex-shrink: 0;
 }
 .venue-hall-line { display: block; margin-top: 4px; }
-.map-buttons { display: flex; gap: 8px; margin-bottom: 24px; }
+.map-buttons { display: flex; gap: 8px; margin-bottom: 48px; }
 .map-btn {
   flex: 1; padding: 11px 0; border: 1px solid #ddd; border-radius: 8px;
   font-family: 'Pretendard', sans-serif;
