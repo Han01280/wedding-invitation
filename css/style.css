@@ -150,7 +150,7 @@ a { text-decoration: none; }
 }
 .hero-wedding-day {
   font-family: 'Pretendard', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: #6b6b6b;
   margin-top: 50px;
   margin-bottom: 20px;
@@ -163,14 +163,14 @@ a { text-decoration: none; }
 }
 .hero-date-line {
   font-family: 'Pretendard', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: #6b6b6b;
   margin-bottom: 4px;
 }
 .hero-venue-line {
   font-family: 'Pretendard', sans-serif;
   font-style: italic;
-  font-size: 13px;
+  font-size: 15px;
   color: #6b6b6b;
 }
 .vintage-photo { position: relative; margin: 0 auto 28px; width: 66%; }

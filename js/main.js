@@ -80,7 +80,7 @@ async function copyText(text) {
     const groomEn = (c.groomNameEn || '').replace(/\s+/g, '').toLowerCase();
     const brideEn = (c.brideNameEn || '').replace(/\s+/g, '').toLowerCase();
     hero.innerHTML = `
-      <p class="hero-star">✳</p>
+      <p class="hero-star">✳&#xFE0E;</p>
       <p class="hero-label">With Love</p>
       <div class="vintage-photo">
         <img src="${c.mainImage}" alt="메인 사진">
