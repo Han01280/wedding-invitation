@@ -1,5 +1,12 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@1.3.9/dist/web/static/pretendard.css');
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,500;1,600&family=Pinyon+Script&family=Caveat:wght@500;600&display=swap');
+@font-face {
+  font-family: 'P22 Grosvenor';
+  src: url('../images/p22-grosvenor.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 * { box-sizing: border-box; margin: 0; padding: 0; word-break: keep-all; }
 html { -webkit-text-size-adjust: 100%; touch-action: pan-x pan-y; background: #fff; }
@@ -143,27 +150,27 @@ a { text-decoration: none; }
 }
 .hero-wedding-day {
   font-family: 'Pretendard', sans-serif;
-  font-size: 10px;
+  font-size: 13px;
   color: #6b6b6b;
   margin-top: 26px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .hero-names-script {
   font-family: 'Pinyon Script', cursive;
-  font-size: 18px;
+  font-size: 28px;
   color: #1a1a1a;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .hero-date-line {
   font-family: 'Pretendard', sans-serif;
-  font-size: 10px;
+  font-size: 13px;
   color: #6b6b6b;
   margin-bottom: 4px;
 }
 .hero-venue-line {
   font-family: 'Pretendard', sans-serif;
   font-style: italic;
-  font-size: 10px;
+  font-size: 13px;
   color: #6b6b6b;
 }
 .vintage-photo { position: relative; margin: 0 auto 28px; width: 58%; }
@@ -176,6 +183,7 @@ a { text-decoration: none; }
 }
 /* ---- 인사말 ---- */
 .greeting-label { font-size: 26px; color: #555; margin-bottom: 30px; }
+.greeting-label.greeting-label--intro { margin-bottom: 112px; }
 .greeting__quote {
   font-family: 'Pretendard', sans-serif;
   font-size: 14px;
@@ -245,9 +253,9 @@ a { text-decoration: none; }
 .gallery-stack-arrow--prev { right: 100%; margin-right: 6px; }
 .gallery-stack-arrow--next { left: 100%; margin-left: 6px; }
 .gallery-quote {
-  font-family: 'Caveat', cursive;
+  font-family: 'P22 Grosvenor', 'Caveat', cursive;
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 400;
   color: #555;
   line-height: 1.6;
   margin-top: 28px;
@@ -308,7 +316,9 @@ a { text-decoration: none; }
 .transport-sub--plain::before { content: none; }
 
 /* ---- 예식홀 위치안내 / 식사안내 ---- */
-.venue-guide-img { width: 100%; border-radius: 0; display: block; }
+.venue-guide-img { width: 100%; border-radius: 0; display: block; margin-bottom: 48px; }
+.section--information { padding-top: 110px; }
+#informationList { margin-bottom: 48px; }
 .info-block { margin-bottom: 26px; }
 .info-block:last-child { margin-bottom: 0; }
 .info-block__title {
@@ -360,19 +370,19 @@ a { text-decoration: none; }
 .toggle-btn {
   flex: 1; padding: 11px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; color: #888;
 }
-.toggle-btn.active { border-color: #301e15; background: #301e15; color: #fff; }
+.toggle-btn.active { border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.1); color: #1a1a1a; }
 .rsvp-field input[type="text"], .rsvp-field input[type="number"], .rsvp-field input[type="tel"] {
   width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;
 }
 .consent-row { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #888; text-align: left; margin-bottom: 24px; }
 .consent-row input { margin-top: 3px; }
-.btn-solid { width: 100%; padding: 14px; background: #301e15; color: #fff; border-radius: 8px; font-size: 14px; font-weight: 700; }
+.btn-solid { width: 100%; padding: 14px; background: rgba(0,0,0,0.1); color: #1a1a1a; border-radius: 8px; font-size: 14px; font-weight: 700; }
 .btn-solid:disabled { background: #ccc; }
 
 /* ---- 공유 ---- */
 .share__buttons { display: flex; flex-direction: column; gap: 10px; }
 .btn-outline { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
-.btn-kakao { width: 100%; padding: 14px; background: #FEE500; color: #391B1B; border-radius: 8px; font-size: 14px; font-weight: 700; }
+.btn-kakao { width: 100%; padding: 14px; background: #000; color: #fff; border-radius: 8px; font-size: 14px; font-weight: 700; }
 
 .footer { padding: 36px 30px 60px; text-align: center; font-size: 11px; color: #aaa; }
 .footer__quote { font-size: 14px; color: #999; line-height: 1.8; margin-bottom: 18px; }
