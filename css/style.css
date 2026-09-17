@@ -124,7 +124,7 @@ a { text-decoration: none; }
 
 /* ---- 히어로: 빈티지 액자 스타일 ---- */
 .hero--vintage {
-  --hero-bg: #e7e7e7;
+  --hero-bg: #eeeeee;
   --vf-color: #b9ab8c;
   background: var(--hero-bg);
   padding: 40px 24px 48px;
