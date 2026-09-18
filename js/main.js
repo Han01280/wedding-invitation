@@ -345,7 +345,7 @@ async function copyText(text) {
     script.onload = () => {
       kakao.maps.load(() => {
         const position = new kakao.maps.LatLng(m.lat, m.lng);
-        const map = new kakao.maps.Map(mapEl, { center: position, level: 5 });
+        const map = new kakao.maps.Map(mapEl, { center: position, level: 4 });
         new kakao.maps.Marker({ position, map });
       });
     };
