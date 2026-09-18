@@ -127,8 +127,8 @@ async function copyText(text) {
     .join('');
   const p = CONFIG.parents;
   document.getElementById('greetingParents').innerHTML =
-    `<p>${escapeHtml(p.groom.father)} · ${escapeHtml(p.groom.mother)} 의 ${escapeHtml(p.groom.relation)}&nbsp;&nbsp; <b>${escapeHtml(CONFIG.intro.groomName)}</b></p>` +
-    `<p>${escapeHtml(p.bride.father)} · ${escapeHtml(p.bride.mother)} 의 ${escapeHtml(p.bride.relation)}&nbsp;&nbsp; <b>${escapeHtml(CONFIG.intro.brideName)}</b></p>`;
+    `<p class="parents-row"><span class="parents-row__left">${escapeHtml(p.groom.father)} · ${escapeHtml(p.groom.mother)} 의 ${escapeHtml(p.groom.relation)}</span>&nbsp;&nbsp;<span class="parents-row__right"><b>${escapeHtml(CONFIG.intro.groomName)}</b></span></p>` +
+    `<p class="parents-row"><span class="parents-row__left">${escapeHtml(p.bride.father)} · ${escapeHtml(p.bride.mother)} 의 ${escapeHtml(p.bride.relation)}</span>&nbsp;&nbsp;<span class="parents-row__right"><b>${escapeHtml(CONFIG.intro.brideName)}</b></span></p>`;
 })();
 
 // ============ 3. 캘린더 / 디데이 ============
@@ -386,7 +386,7 @@ async function copyText(text) {
   const rows = [
     transportGroup('셔틀버스', t.shuttle, 'transport-sub--plain'),
     transportGroup('시내버스', t.bus),
-    transportGroup('SRT&KTX', t.srtKtx),
+    transportGroup('KTX', t.srtKtx),
   ].filter(Boolean);
   document.getElementById('transportList').innerHTML = rows.join('');
 })();
@@ -561,7 +561,7 @@ async function copyText(text) {
 
 // ============ 스크롤 페이드업 ============
 (function initFadeUp() {
-  const targets = document.querySelectorAll('.fade-up');
+  const targets = document.querySelectorAll('.fade-up, .fade-title, .parents-row');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       entry.target.classList.toggle('show', entry.isIntersecting);

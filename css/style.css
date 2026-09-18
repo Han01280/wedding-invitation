@@ -62,8 +62,19 @@ a { text-decoration: none; }
 .serif-font { font-family: 'EB Garamond', 'Pretendard', serif; font-style: italic; }
 
 /* ---- 스크롤 페이드업 ---- */
-.fade-up { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity .9s ease .15s, transform .9s ease .15s; }
 .fade-up.show { opacity: 1; transform: translateY(0); }
+.fade-title { opacity: 0; transform: translateY(-24px); transition: opacity .8s ease, transform .8s ease; }
+.fade-title.show { opacity: 1; transform: translateY(0); }
+.parents-row__left, .parents-row__right {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity .8s ease, transform .8s ease;
+}
+.parents-row__left { transform: translateX(-40px); }
+.parents-row__right { transform: translateX(40px); }
+.parents-row.show .parents-row__left,
+.parents-row.show .parents-row__right { opacity: 1; transform: translateX(0); }
 
 /* ---- 섹션 공통 ---- */
 .section { padding: 64px 30px; text-align: center; }
@@ -200,8 +211,8 @@ a { text-decoration: none; }
 .section--dark { background: #301e15; color: #e9dfcf; padding-top: 110px; }
 .section--location { padding-top: 110px; }
 .section--location .section__label { margin-bottom: 40px; }
-.section--invitation { padding-top: 110px; }
-.section--invitation .section__label { margin-bottom: 84px; }
+.section--invitation { padding-top: 122px; }
+.section--invitation .section__label { margin-bottom: 72px; }
 .section__label--light.section__label { color: #fff; }
 .calendar-photo { width: 100%; max-width: 220px; margin: 24px auto 42px; border-radius: 2px; display: block; }
 .calendar__month--dark.calendar__month {
@@ -321,7 +332,7 @@ a { text-decoration: none; }
 .section--gift .section__label { margin-bottom: 40px; }
 #rsvpSection { padding-top: 110px; }
 #rsvpSection .section__label { margin-bottom: 40px; }
-.transport-group { margin-bottom: 20px; }
+.transport-group { margin-bottom: 26px; }
 .transport-group:last-child { margin-bottom: 0; }
 .transport-group b {
   display: inline-block;
