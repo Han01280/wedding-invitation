@@ -22,6 +22,14 @@
   }, { passive: false });
 })();
 
+// ============ 이미지 길게 눌러 저장 방지 ============
+document.addEventListener('contextmenu', (e) => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+document.addEventListener('dragstart', (e) => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+
 // ============ 유틸 ============
 function escapeHtml(str) {
   const div = document.createElement('div');

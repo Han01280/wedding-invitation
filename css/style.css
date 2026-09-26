@@ -22,7 +22,7 @@ body {
 @media (min-width: 769px) {
   body { max-width: 375px; margin: 0 auto; }
 }
-img { max-width: 100%; display: block; -webkit-user-select: none; user-select: none; }
+img { max-width: 100%; display: block; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-user-drag: none; }
 button, a { background: none; border: none; cursor: pointer; font-family: inherit; color: inherit; }
 a { text-decoration: none; }
 
