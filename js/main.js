@@ -555,14 +555,22 @@ async function copyText(text) {
     toggle.classList.remove('playing');
   }
 
+  const gestureEvents = ['click', 'touchstart', 'scroll', 'keydown'];
+  function disarmAutoResume() {
+    gestureEvents.forEach((ev) => document.removeEventListener(ev, resumeOnce));
+  }
+  function resumeOnce() {
+    disarmAutoResume();
+    play();
+  }
+
   if (CONFIG.bgm.autoPlay) {
     play();
-    const resumeOnce = () => { play(); document.removeEventListener('click', resumeOnce); document.removeEventListener('touchstart', resumeOnce); };
-    document.addEventListener('click', resumeOnce, { once: true });
-    document.addEventListener('touchstart', resumeOnce, { once: true });
+    gestureEvents.forEach((ev) => document.addEventListener(ev, resumeOnce, { once: true, passive: true }));
   }
 
   toggle.addEventListener('click', () => {
+    disarmAutoResume();
     if (toggle.classList.contains('playing')) pause(); else play();
   });
 })();
