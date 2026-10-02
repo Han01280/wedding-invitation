@@ -547,26 +547,25 @@ async function copyText(text) {
   audio.loop = true;
   toggle.hidden = false;
 
+  const gestureEvents = ['click', 'touchstart', 'scroll', 'keydown'];
+  function disarmAutoResume() {
+    gestureEvents.forEach((ev) => document.removeEventListener(ev, play));
+  }
   function play() {
-    audio.play().then(() => toggle.classList.add('playing')).catch(() => {});
+    if (!audio.paused) return;
+    audio.play().then(() => {
+      toggle.classList.add('playing');
+      disarmAutoResume();
+    }).catch(() => {});
   }
   function pause() {
     audio.pause();
     toggle.classList.remove('playing');
   }
 
-  const gestureEvents = ['click', 'touchstart', 'scroll', 'keydown'];
-  function disarmAutoResume() {
-    gestureEvents.forEach((ev) => document.removeEventListener(ev, resumeOnce));
-  }
-  function resumeOnce() {
-    disarmAutoResume();
-    play();
-  }
-
   if (CONFIG.bgm.autoPlay) {
     play();
-    gestureEvents.forEach((ev) => document.addEventListener(ev, resumeOnce, { once: true, passive: true }));
+    gestureEvents.forEach((ev) => document.addEventListener(ev, play, { passive: true }));
   }
 
   toggle.addEventListener('click', () => {
